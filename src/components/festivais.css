@@ -1,0 +1,34 @@
+.festivais-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .festival-item {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .festival-item img {
+    width: 100%;
+    height: 200px; /* Ajuste conforme necessário */
+    object-fit: cover;
+  }
+  
+  .festival-info {
+    padding: 10px;
+  }
+  
+  .festival-info h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2em;
+  }
+  
+  .festival-info p {
+    margin: 0;
+    font-size: 1em;
+  }
+  

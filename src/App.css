@@ -1,0 +1,109 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 7vmin; /* Tamanho reduzido do logo */
+  pointer-events: none;
+}
+
+/* Atualização do estilo do header para centralizar o conteúdo */
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+/* Estilo atualizado para os links */
+nav {
+  background-color: #f3f3f3;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  color: #0078d4;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Inserindo um elemento 'div' para envolver os links e centralizá-los */
+nav .nav-links {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+nav .nav-links a {
+  margin: 0 20px;
+}
+
+/* Ajuste de responsividade */
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav .nav-links {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  nav .nav-links a {
+    margin: 10px 0;
+  }
+}
+
+/* Estilos para os cartões de festivais */
+.festival-card {
+  background-color: #282c34;
+  color: white;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.festival-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.festival-date {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffcc00; /* Cor para a data */
+}
+
+.festival-name {
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.festival-location {
+  font-size: 1.2rem;
+}
+
+/* Estilos para o conteúdo do cartão */
+.festival-content {
+  font-size: 1rem;
+  line-height: 1.5;
+}

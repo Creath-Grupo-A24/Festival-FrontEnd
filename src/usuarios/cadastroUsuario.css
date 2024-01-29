@@ -1,0 +1,70 @@
+.cadastro-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cadastro-container h2 {
+    color: #202124;
+    margin-bottom: 20px;
+}
+
+.cadastro-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.cadastro-container label {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #202124;
+    text-align: left;
+    display: table-row;
+}
+
+.cadastro-container input,
+.cadastro-container select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #202124;
+}
+
+.cadastro-container input:focus,
+.cadastro-container select:focus {
+    outline: none;
+    border-color: #4285f4;
+    box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.3);
+}
+
+.btCadastra {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4285f4;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btVolta{
+    padding: 10px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    background-color: green;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cadastro-container button:hover {
+    background-color: #3367d6;
+}

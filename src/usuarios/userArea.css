@@ -1,0 +1,53 @@
+.userArea {
+    background-color: #f6f8fa;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    padding: 20px;
+    width: 300px;
+    margin: 0 auto;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.userArea label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.userArea input {
+    width: 100%;
+    padding: 1px;
+    margin-bottom: 10px;
+    border: 1px solid #d1d5da;
+    border-radius: 6px;
+}
+
+.userArea button {
+    padding: 8px 80px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    background-color: #2ea44f;
+    margin-left: 35px;
+    margin-bottom: 1px;
+}
+
+.userArea button:nth-child(3) {
+    background-color: #2ea44f; /* Green for register */
+    float: right;
+}
+
+.userArea button:nth-child(2) {
+    background-color: #0366d6; /* Blue for login */
+    float: left;
+}
+
+/* Clear floats */
+.userArea:after {
+    content: "";
+    display: table;
+    clear: both;
+}
