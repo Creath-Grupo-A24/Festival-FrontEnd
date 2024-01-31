@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getAll } from './festivalService'; // Importe a função para buscar os festivais
+import { getEvents } from './festivalService';
 import './festivais.css';
 
 const Festivais = () => {
-  const [festivais, setFestivais] = useState([]);
+  const [eventos, setEventos] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getAll();
-        setFestivais(response.data);
+        const response = await getEvents(0, 10, '', 'time', 'ASC');
+        console.log(response.items);
+        setEventos(response.items || []); 
       } catch (error) {
-        console.error('Erro ao buscar festivais', error);
+        console.error('Erro ao buscar eventos', error);
       }
     };
 
@@ -21,16 +22,21 @@ const Festivais = () => {
 
   return (
     <div className="festivais-container">
-      {festivais.map(festival => (
-        <Link to={`/festival/${festival.id}`} key={festival.id} className="festival-item-link">
+      {eventos.map(evento => (
+        <Link to={`/festival/${evento.id}`} key={evento.id} className="festival-item-link">
           <div className="festival-item">
-            <img src={festival.imagem} alt={festival.nome} />
+            {/* <img src={evento.imagem} alt={evento.name} /> Imagem comentada ate estar disponivel*/}
             <div className="festival-info">
-              <h3>{festival.nome}</h3>
-              <p>{festival.id}</p>
-              <p>{festival.descricao}</p>
-              <p>Data: {festival.data}</p>
-              <p>Local: {festival.local}</p>
+              <h3>{evento.name}</h3>
+              <p>{evento.description}</p>
+              <p>Data: {evento.time}</p> 
+              <p>Local: {evento.place}</p>
+              <h4>Categorias:</h4>
+              <ul>
+                {evento.categories.map((categoria, index) => (
+                  <li key={index}>{categoria}</li>
+                ))}
+              </ul>
             </div>
           </div>
         </Link>

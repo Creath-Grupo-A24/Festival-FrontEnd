@@ -3,14 +3,15 @@ import './cadastroUsuario.css';
 import { useNavigate } from 'react-router-dom';
 
 // Função para registrar usuário
-const registerUser = async (email, password) => {
+const registerUser = async (userData) => {
     try {
-        const response = await fetch('http://localhost:8091/auth/signup', {
+        const response = await fetch('http://localhost:8091/v1/sign/up', {
             method: 'POST',
             headers: {
+                'accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify(userData)
         });
 
         if (!response.ok) {
@@ -29,36 +30,39 @@ function CadastroUsuario() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [name, setName] = useState('');
-    const [tipo, setTipo] = useState(''); // Alterando para 'tipo'
-    const [cpf, setCpf] = useState('');
     const [birthDate, setBirthDate] = useState('');
+    const [roleId, setRoleId] = useState('');
+    const [cpf, setCpf] = useState('');
+    const [phone, setPhone] = useState('');
 
     const navigate = useNavigate();
-
-    const handleLogin = async (e) => {
-        e.preventDefault(); 
-        // Redireciona para o componente AreaUsuario ao clicar em "Voltar"
-        navigate("/areausuario");
-    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
+        // Formata a data para o formato 'dd/MM/yyyy'
+        const formattedBirthDate = birthDate ? new Date(birthDate + 'T00:00:00').toLocaleDateString('pt-BR', {
+            timeZone: 'UTC' 
+        }) : '';
         const userData = {
             username,
             email,
-            senha,
+            password: senha,
             name,
-            roles: tipo, // Atualizado para 'tipo'
+            birth_date: formattedBirthDate.toString(),
+            role_id: parseInt(roleId, 10),
             cpf,
-            birth_date: birthDate // Formato esperado: 'AAAA-MM-DD'
+            phone
         };
 
+        console.log('Dados enviados:', JSON.stringify(userData));
+
+
         try {
-            const response = await registerUser(email, senha);
+            const response = await registerUser(userData);
             if (response) {
                 console.log('Dados do usuário cadastrados com sucesso', response);
-                // Implemente o que deve acontecer após o cadastro bem-sucedido
+                navigate('/loginusuario');
             }
         } catch (error) {
             console.error('Erro ao enviar dados do usuário:', error);
@@ -106,17 +110,26 @@ function CadastroUsuario() {
                     />
                 </div>
                 <div>
-                    <label>Tipo de Usuário:</label>
+                    <label>Data de Nascimento:</label>
+                    <input
+                        type="date"
+                        value={birthDate}
+                        onChange={(e) => setBirthDate(e.target.value)}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Tipo de Usuário (Role ID):</label>
                     <select
-                        value={tipo}
-                        onChange={(e) => setTipo(e.target.value)}
+                        value={roleId}
+                        onChange={(e) => setRoleId(e.target.value)}
                         required
                     >
                         <option value="">Selecione um Tipo</option>
-                        <option value="ADM">ADM</option>
-                        <option value="DIR">DIR</option>
-                        <option value="DAN">DAN</option>
-                        <option value="COR">COR</option>
+                        <option value="1">ADM</option>
+                        <option value="2">DIR</option>
+                        <option value="3">DAN</option>
+                        <option value="4">COR</option>
                     </select>
                 </div>
                 <div>
@@ -129,16 +142,16 @@ function CadastroUsuario() {
                     />
                 </div>
                 <div>
-                    <label>Data de Nascimento:</label>
+                    <label>Telefone:</label>
                     <input
-                        type="date"
-                        value={birthDate}
-                        onChange={(e) => setBirthDate(e.target.value)}
-                        required
+                        type="text"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        //required
                     />
                 </div>
                 <button className='btCadastra' type="submit">Cadastrar</button>
-                <button className='btVolta' onClick={handleLogin}>Voltar para login</button>
+                <button className='btVolta' onClick={() => navigate('/loginusuario')}>Voltar para login</button>
             </form>
         </div>
     );
