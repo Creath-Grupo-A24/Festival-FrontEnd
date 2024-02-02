@@ -111,4 +111,6 @@ nav .nav-links a {
   text-decoration: none;
   font-weight: bold;
   border: none;
+  margin-top: 4px;
+  font-size: 14px;
 }
