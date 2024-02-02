@@ -27,16 +27,17 @@ const Festivais = () => {
           <div className="festival-item">
             {/* <img src={evento.imagem} alt={evento.name} /> Imagem comentada ate estar disponivel*/}
             <div className="festival-info">
+              <p>{evento.time}</p> 
               <h3>{evento.name}</h3>
               <p>{evento.description}</p>
-              <p>Data: {evento.time}</p> 
-              <p>Local: {evento.place}</p>
+              
               <h4>Categorias:</h4>
               <ul>
                 {evento.categories.map((categoria, index) => (
                   <li key={index}>{categoria}</li>
                 ))}
               </ul>
+              <p>Local: {evento.place}</p>
             </div>
           </div>
         </Link>

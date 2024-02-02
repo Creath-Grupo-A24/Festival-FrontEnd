@@ -1,34 +1,83 @@
 .festivais-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
-  }
-  
-  .festival-item {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .festival-item img {
-    width: 100%;
-    height: 200px; /* Ajuste conforme necessário */
-    object-fit: cover;
-  }
-  
-  .festival-info {
-    padding: 10px;
-  }
-  
-  .festival-info h3 {
-    margin: 0 0 10px 0;
-    font-size: 1.2em;
-  }
-  
-  .festival-info p {
-    margin: 0;
-    font-size: 1em;
-  }
-  
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.festival-item {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  position: relative;
+}
+
+.festival-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.festival-info {
+  padding: 10px;
+}
+
+.festival-info h3 {
+  text-transform: uppercase;
+  font-size: 2em; 
+  color: #FF00FF; 
+  font-weight: bold;
+  margin: 0.5em 0; 
+}
+
+.festival-info p {
+  margin: 0 0 0.5em; 
+  font-size: 1em;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.festival-info ul, .festival-info h4 {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.festival-item-link {
+  text-decoration: none;
+  color: black; 
+}
+
+.festival-item-date {
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.8em;
+}
+
+.festival-info-location {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5em;
+}
+
+.festival-info-location-icon {
+  margin-right: 5px;
+}
+
+
+.festival-info ul {
+  padding-left: 0;
+}
+
+.festival-info li {
+  display: block;
+}

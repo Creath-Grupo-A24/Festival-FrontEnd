@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './userArea.css';
+import fest from './creatFest.PNG';
 
 const UserArea = () => {
     const [username, setUsername] = useState(""); 
@@ -36,7 +37,10 @@ const UserArea = () => {
             const user = await authenticateUser(username, password);
             if (user) {
                 console.log("Usuário autenticado com sucesso:", user);
-                navigate("/pagina-desejada"); // Substituir pelo caminho desejado ao criar as paginas especificas
+                localStorage.setItem('user', JSON.stringify(user.user));
+                localStorage.setItem('token', user.token);
+
+                navigate("/"); 
             }
         } catch (error) {
             console.error("Erro no login:", error);
@@ -51,6 +55,7 @@ const UserArea = () => {
     return (
         <div className="userArea">
             <form onSubmit={handleLogin}>
+                <img className='festLogo' alt='fest' src={fest}></img>
                 <label>Username</label>
                 <input 
                     type="text" 
@@ -58,7 +63,6 @@ const UserArea = () => {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                 />
-                <br />
                 <label>Senha</label>
                 <input 
                     type="password" 
@@ -66,9 +70,11 @@ const UserArea = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <button type="submit">Login</button>
+
+                <button className='login' type="submit">Entrar</button>
             </form>
-            <button onClick={handleRegister}>Ir para Cadastro</button>
+            <div className='registerBtn'><label>Não tem conta?</label>
+            <button className='register' onClick={handleRegister}>Cadastre-se</button></div>
         </div>    
     );
 };

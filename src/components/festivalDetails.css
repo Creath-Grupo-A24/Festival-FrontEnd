@@ -1,0 +1,72 @@
+.festival-details {
+    font-family: 'Arial', sans-serif; 
+    max-width: 1200px; 
+    margin: auto;
+    padding: 20px;
+    color: #333; 
+  }
+
+  .festival-details h1 {
+    font-size: 4em; 
+    color: #FF00FF;
+    margin-bottom: 0.5em;
+    text-transform: uppercase; 
+    display: flex;
+  }
+
+  .festival-details p {
+    font-size: 1em;
+    line-height: 1.6; 
+    margin-bottom: 1em;
+    color: #fff;
+    text-transform: capitalize;
+    display: flex;
+  }
+
+  .festival-details .details {
+    font-size: 1.2em;
+    margin-bottom: 1em;
+  }
+  
+  /* Estilo para a lista de categorias */
+  .festival-details ul {
+    list-style: none; /* Remove os marcadores da lista */
+    padding: 0; /* Remove o padding padrão */
+    margin-bottom: 1em; /* Espaçamento abaixo da lista */
+  }
+  
+  .festival-details li {
+    background-color: #EFEFEF; 
+    display: inline-block; 
+    padding: 0.5em 1em; 
+    margin: 0.5em;
+    border-radius: 5px;
+  }
+  
+  .festival-details button {
+    background-color: #1045e4;
+    color: #ff83d5;
+    border-radius: 0;
+    width: 100%;
+    letter-spacing: 10px;
+    font-size: 23px;
+    line-height: 23px;
+    font-weight: 500;
+    font-style: italic;
+    transition: all .5s;
+    text-transform: uppercase;
+    padding: 25px 0;
+  }
+  
+  /* Adaptações responsivas */
+  @media (max-width: 768px) {
+    .festival-details h1 {
+      font-size: 2em;
+    }
+  
+    .festival-details .btn {
+      width: 100%; 
+      text-align: center; 
+    }
+  }
+  

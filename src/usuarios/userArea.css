@@ -1,53 +1,108 @@
 .userArea {
-    background-color: #f6f8fa;
-    border: 1px solid #e1e4e8;
-    border-radius: 6px;
-    padding: 20px;
-    width: 300px;
-    margin: 0 auto;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    background-color: #3282F6; /* Cor de fundo azul */
+    border-radius: 10px;
+    padding: 40px;
+    width: 350px;
+    margin: 100px auto; /* Ajuste conforme necessário para centralizar */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    color: white; /* Texto branco */
+    font-family: 'Arial', sans-serif; /* Fonte padrão */
 }
 
 .userArea label {
-    display: block;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     font-weight: 600;
-    text-align: left;
+    display: flex;
 }
 
 .userArea input {
-    width: 100%;
-    padding: 1px;
-    margin-bottom: 10px;
-    border: 1px solid #d1d5da;
-    border-radius: 6px;
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 20px;
+    box-sizing: border-box;
 }
 
-.userArea button {
-    padding: 8px 80px;
+.userArea button.login {
+    width: 100%;
+    padding: 10px;
     border: none;
-    border-radius: 6px;
+    border-radius: 20px;
     cursor: pointer;
     font-weight: bold;
+    background-color: #fff; 
+    color: #2C05F2;
+}
+
+.userArea form {
+    margin-bottom: 20px;
+}
+
+/* Link para 'Esqueceu a senha?' e 'Cadastre-se' */
+.userArea a {
     color: white;
-    background-color: #2ea44f;
-    margin-left: 35px;
-    margin-bottom: 1px;
+    text-decoration: underline;
+    cursor: pointer;
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
 }
 
-.userArea button:nth-child(3) {
-    background-color: #2ea44f; /* Green for register */
-    float: right;
+/* Botão de cadastro com estilo diferente */
+.userArea button.register {
+    background-color: transparent;
+    color: white;
+    border:none;
+    padding: 8px 16px; /* Ajuste o padding conforme necessário */
+    font-size: 0.9em; /* Ajuste o tamanho da fonte se necessário */
+    margin: 5px auto; /* Reduz a margem externa */
+    display: block;
+    width: fit-content;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
 }
 
-.userArea button:nth-child(2) {
-    background-color: #0366d6; /* Blue for login */
-    float: left;
+
+/* Remove o float e utiliza flex para melhor alinhamento e responsividade */
+.userArea {
+    display: flex;
+    flex-direction: column;
 }
 
-/* Clear floats */
-.userArea:after {
-    content: "";
-    display: table;
-    clear: both;
+/* Ajusta o espaçamento e alinhamento dos botões */
+.userArea button.login {
+    background-color: #fff; 
+    color: #2C05F2;
+    padding: 8px 75px;
+    font-size: 0.9em; 
+    margin: 10px 0;
+    border-radius: 20px; 
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    width: fit-content; 
+    display: block;
+    margin-left: auto; /* Centraliza o botão na div */
+    margin-right: auto; /* Centraliza o botão na div */
+}
+
+
+/* Ajusta a cor do texto dos inputs para contraste com o fundo */
+.userArea input {
+    color: #333;
+    background-color: white;
+}
+
+/* Ajusta o espaçamento e alinhamento do formulário */
+.userArea form {
+    display: flex;
+    flex-direction: column;
+}
+
+.registerBtn label {
+    display: block;
+    text-align: center;
+    margin-bottom: -15px; /* Valor reduzido para diminuir o espaço entre o label e o botão */
+    font-size: 0.9em; /* Ajuste o tamanho da fonte se necessário */
 }

@@ -1,13 +1,13 @@
 .App {
   text-align: center;
+  background-color: #1B44C0;
 }
 
 .App-logo {
-  height: 7vmin; /* Tamanho reduzido do logo */
+  height: 7vmin; 
   pointer-events: none;
 }
 
-/* Atualização do estilo do header para centralizar o conteúdo */
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -19,7 +19,6 @@
   color: white;
 }
 
-/* Estilo atualizado para os links */
 nav {
   background-color: #f3f3f3;
   padding: 10px 20px;
@@ -39,7 +38,6 @@ nav a:hover {
   text-decoration: underline;
 }
 
-/* Inserindo um elemento 'div' para envolver os links e centralizá-los */
 nav .nav-links {
   display: flex;
   justify-content: center;
@@ -89,7 +87,7 @@ nav .nav-links a {
 .festival-date {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #ffcc00; /* Cor para a data */
+  color: #ffcc00; 
 }
 
 .festival-name {
@@ -106,4 +104,11 @@ nav .nav-links a {
 .festival-content {
   font-size: 1rem;
   line-height: 1.5;
+}
+
+.nav-links button{
+  color: #0078d4;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
 }
