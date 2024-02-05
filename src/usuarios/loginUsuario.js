@@ -2,45 +2,31 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './userArea.css';
 import fest from './creatFest.PNG';
+import {authenticateUser, getUserByToken} from './userService';
 
 const UserArea = () => {
     const [username, setUsername] = useState(""); 
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-
-    // Função para autenticar usuário
-    const authenticateUser = async (username, password) => {
-        try {
-            const response = await fetch('http://localhost:8091/v1/sign/in', { 
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ username, password })
-            });
-
-            if (!response.ok) {
-                throw new Error(`Erro HTTP! Status: ${response.status}`);
-            }
-
-            const user = await response.json();
-            return user;
-        } catch (error) {
-            console.error("Erro ao autenticar:", error);
-            throw error;
-        }
-    };
-
+    
     const handleLogin = async (e) => {
         e.preventDefault(); 
         try {
             const user = await authenticateUser(username, password);
             if (user) {
                 console.log("Usuário autenticado com sucesso:", user);
-                localStorage.setItem('user', JSON.stringify(user.user));
-                localStorage.setItem('token', user.token);
+                const authResponse = await authenticateUser(username, password);
+                if (authResponse && authResponse.token) {
+                    console.log("Autenticação bem-sucedida, token:", authResponse.token);
+                    localStorage.setItem('token', authResponse.token);
 
-                navigate("/"); 
+                    const userDetails = await getUserByToken(authResponse.token);
+                    console.log("Detalhes do usuário obtidos:", userDetails);
+
+                    localStorage.setItem('user', JSON.stringify(userDetails)); 
+                    
+                    navigate("/"); 
+                }
             }
         } catch (error) {
             console.error("Erro no login:", error);
@@ -49,7 +35,7 @@ const UserArea = () => {
 
     const handleRegister = (e) => {
         e.preventDefault(); 
-        navigate("/registration"); // Navega para a página de registro
+        navigate("/registration");
     };
 
     return (

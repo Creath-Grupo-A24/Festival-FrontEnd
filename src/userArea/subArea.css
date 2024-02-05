@@ -1,0 +1,23 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+.content div form{
+    display: inline-grid;
+    flex-direction: column;
+    background-color: #3282F6;
+    border-radius: 10px;
+    padding: 40px;
+    width: 350px;
+    margin: 100px auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    color: white;
+    font-family: 'Arial', sans-serif;
+    width: 90%; 
+    margin-bottom: 20px;
+}
+.content label{
+    display: flex;
+}
+

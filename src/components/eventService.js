@@ -2,14 +2,12 @@ import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:8091/v1/subscription/';
 
-const user = localStorage.getItem('user');
-const userString = user ? JSON.parse(user) : {}; 
-
 export const createSubscription = async (subscriptionData) => {
+    const token = localStorage.getItem('token');
     return await axios.post(`${API_BASE_URL}`, subscriptionData, {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${userString.token}`, 
+            'Authorization': `Bearer ${token}`, 
         }
     });
 };
@@ -39,3 +37,5 @@ export const getSubscriptionByEventId = async (eventId, { page = 0, perPage = 10
         }
     });
 };
+
+

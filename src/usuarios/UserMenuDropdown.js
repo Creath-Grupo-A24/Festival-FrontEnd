@@ -5,7 +5,7 @@ const UserMenuDropdown = ({ onLogout, style = {} }) => {
   const navigate = useNavigate();
 
   const handleGoToUserProfile = () => {
-    navigate("/userprofile");
+    navigate('/userarea');
   };
 
   return (

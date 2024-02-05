@@ -3,13 +3,19 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import logo from "./logo.png";
 // Components
-import Home from "./components/festivais";
-import User from "./usuarios/loginUsuario";
-import Cadastro from "./usuarios/cadastroUsuario";
-import FestivalDetails from "./components/festivalDetails";
-import UserMenuDropdown from "./usuarios/UserMenuDropdown";
-import Subscription from "./components/eventSub";
-import EventCreate from "./components/eventCreate";
+import Home from './components/festivais';
+import User from './usuarios/loginUsuario';
+import Cadastro from './usuarios/cadastroUsuario';
+import FestivalDetails from './components/festivalDetails';
+import UserMenuDropdown from './usuarios/UserMenuDropdown';
+import Subscription from './components/eventSub';
+import EventCreate from './components/eventCreate';
+import UserArea from './userArea/userArea';
+import Data from './userArea/userData';
+import CreateCompany from './userArea/createCompany';
+import SubscriptionArea from './userArea/subscriptionsArea';
+import Details from './userArea/detailsSubs';
+import UploadForm from './rules/uploadRules';
 
 function App() {
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -102,8 +108,15 @@ function App() {
         <Route path="/loginusuario" element={<User />} />
         <Route path="/registration" element={<Cadastro />} />
         <Route path="/festival/:id" element={<FestivalDetails />} />
-        <Route path="/inscricao/:id" element={<Subscription />} />
-        <Route path="/create" element={<EventCreate />} />
+        <Route path='/inscricao/:id' element={<Subscription />} />
+        <Route path='/create' element={<EventCreate />}/>
+        <Route path="/userarea" element={<UserArea />}>
+          <Route path="data" element={<Data />} />
+          <Route path="createcompany" element={<CreateCompany />} />
+          <Route path='subscriptionlist' element={<SubscriptionArea/>}/>
+          <Route path='details' element={<Details/>}/>
+        </Route>
+        <Route path='uprules' element={<UploadForm/>}/>
       </Routes>
     </div>
   );

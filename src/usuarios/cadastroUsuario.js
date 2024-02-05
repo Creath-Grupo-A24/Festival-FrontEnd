@@ -1,29 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './cadastroUsuario.css';
 import { useNavigate } from 'react-router-dom';
-
-// Função para registrar usuário
-const registerUser = async (userData) => {
-    try {
-        const response = await fetch('http://localhost:8091/v1/sign/up', {
-            method: 'POST',
-            headers: {
-                'accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(userData)
-        });
-
-        if (!response.ok) {
-            throw new Error(`Erro HTTP! Status: ${response.status}`);
-        }
-
-        return await response.json();
-    } catch (error) {
-        console.error("Erro ao cadastrar:", error);
-        throw error;
-    }
-};
+import {registerUser} from './userService';
+import {listRoles} from '../usuarios/userService';
 
 function validarCPF(cpf) {
     cpf = cpf.replace(/[^\d]+/g, ''); // Remove caracteres não numéricos
@@ -64,25 +43,39 @@ function CadastroUsuario() {
     const [roleId, setRoleId] = useState('');
     const [cpf, setCpf] = useState('');
     const [phone, setPhone] = useState('');
+    const [roles, setRoles] = useState([]);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchRoles = async () => {
+            try {
+                const fetchedRoles = await listRoles();
+                setRoles(fetchedRoles); 
+            } catch (error) {
+                console.error('Erro ao buscar roles:', error);
+            }
+        };
+
+        fetchRoles();
+    }, []);
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // Formata a data para o formato 'dd/MM/yyyy'
         const formattedBirthDate = birthDate ? new Date(birthDate + 'T00:00:00').toLocaleDateString('pt-BR', {
             timeZone: 'UTC' 
         }) : '';
 
         if (!validarCPF(cpf)) {
             alert('CPF inválido!');
-            return; // Interrompe a função se o CPF for inválido
+            return; 
         }
 
         if (!validarNumeroTelefone(phone)) {
             alert('Número de telefone inválido!');
-            return; // Interrompe a função se o telefone for inválido
+            return; 
         }
 
         const userData = {
@@ -167,10 +160,9 @@ function CadastroUsuario() {
                         required
                     >
                         <option value="">Selecione um Tipo</option>
-                        <option value="1">ADM</option>
-                        <option value="2">DIR</option>
-                        <option value="3">COR</option>
-                        <option value="4">DAN</option>
+                        {roles.map((role) => (
+                            <option key={role.id} value={role.id}>{role.type}</option>
+                        ))}
                     </select>
                 </div>
                 <div>
@@ -188,7 +180,6 @@ function CadastroUsuario() {
                         type="text"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
-                        //required
                     />
                 </div>
                 <button className='btCadastra' type="submit">Cadastrar</button>
