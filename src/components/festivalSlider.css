@@ -1,0 +1,30 @@
+.slider {
+  display: flex;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  filter: blur(1px) grayscale(60%);
+  z-index: 1;
+  transition: 1s;
+}
+
+.slide {
+  flex: 1;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+}
+
+.SOLO {
+  background-image: url("../img/solo.jpg");
+}
+.DUO {
+  background-image: url("../img/duo.jpg");
+}
+.TRIO {
+  background-image: url("../img/trio.jpg");
+}
+.EQUIPE {
+  background-image: url("../img/equipe.jpg");
+}

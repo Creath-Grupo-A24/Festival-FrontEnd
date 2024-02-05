@@ -3,15 +3,24 @@
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
   padding: 20px;
+  padding-top: 15vh;
+  -webkit-box-shadow: inset 0px 50px 86px 29px rgba(0, 0, 0, 1);
+  -moz-box-shadow: inset 0px 50px 86px 29px rgba(0, 0, 0, 1);
+  box-shadow: inset 0px 50px 86px 29px rgba(0, 0, 0, 1);
 }
 
 .festival-item {
-  border: 1px solid #ccc;
-  border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background-color: #fff;
   position: relative;
+  height: 38vh;
+  width: 22vw;
+  transition: 0.5s;
+}
+
+.festival-item:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+  transform: scale(1.01);
 }
 
 .festival-item img {
@@ -21,28 +30,32 @@
 }
 
 .festival-info {
+  position: relative;
   padding: 10px;
+  color: #fff;
+  text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.82);
+  z-index: 2;
 }
 
 .festival-info h3 {
   text-transform: uppercase;
-  font-size: 2em; 
-  color: #FF00FF; 
+  font-size: 1.3em;
   font-weight: bold;
-  margin: 0.5em 0; 
+  margin: 0.5em 0;
 }
 
 .festival-info p {
-  margin: 0 0 0.5em; 
+  margin: 0 0 0.5em;
   font-size: 1em;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.festival-info ul, .festival-info h4 {
+.festival-info ul,
+.festival-info h4 {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -50,7 +63,7 @@
 
 .festival-item-link {
   text-decoration: none;
-  color: black; 
+  color: black;
 }
 
 .festival-item-date {
@@ -73,11 +86,25 @@
   margin-right: 5px;
 }
 
-
 .festival-info ul {
-  padding-left: 0;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .festival-info li {
-  display: block;
+  flex: 0 0 calc(50% - 10px); /* Adjust the width as needed */
+  margin: 5px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .festival-item {
+    width: 100%;
+    height: 54vh;
+  }
+  .festivais-container {
+    padding-top: 30vh;
+  }
 }

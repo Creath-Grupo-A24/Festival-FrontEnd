@@ -1,11 +1,12 @@
 .App {
   text-align: center;
-  background-color: #1B44C0;
+  background-color: #242424;
 }
 
 .App-logo {
-  height: 7vmin; 
+  height: 7vmin;
   pointer-events: none;
+  filter: invert(100%);
 }
 
 .App-header {
@@ -19,23 +20,35 @@
   color: white;
 }
 
-nav {
-  background-color: #f3f3f3;
+.header {
+  background-color: transparent;
+  position: fixed;
+  width: 100%;
+  top: 0;
   padding: 10px 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 1000;
+  transition: 0.5s;
+}
+
+.nav_link::after{
+  content: '';
+  height: 2px;
+  width: 0;
+  background: rgb(170, 6, 6);
+  display: block;
+  transition: .5s;
+}
+.nav_link:hover::after{
+  width: 100%;
 }
 
 nav a {
-  color: #0078d4;
   text-decoration: none;
   font-weight: bold;
-}
-
-nav a:hover {
-  text-decoration: underline;
 }
 
 nav .nav-links {
@@ -87,7 +100,7 @@ nav .nav-links a {
 .festival-date {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #ffcc00; 
+  color: #ffcc00;
 }
 
 .festival-name {
@@ -106,11 +119,15 @@ nav .nav-links a {
   line-height: 1.5;
 }
 
-.nav-links button{
-  color: #0078d4;
+.nav-links button {
   text-decoration: none;
   font-weight: bold;
   border: none;
   margin-top: 4px;
   font-size: 14px;
+  background-color: transparent;
+}
+
+button {
+  cursor: pointer;
 }
