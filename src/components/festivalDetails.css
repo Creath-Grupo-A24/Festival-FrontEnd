@@ -6,6 +6,25 @@
     color: #333; 
   }
 
+  .festival-details form{
+    display: inline-grid;
+    flex-direction: column;
+    background-color: #3282F6;
+    border-radius: 10px;
+    padding: 40px;
+    width: 350px;
+    margin: 100px auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    color: white;
+    font-family: 'Arial', sans-serif;
+    width: 90%;
+    margin-bottom: 20px;
+  }
+
+  .festival-details form p{
+    color: black;
+  }
+
   .festival-details h1 {
     font-size: 4em; 
     color: #FF00FF;
@@ -28,11 +47,11 @@
     margin-bottom: 1em;
   }
   
-  /* Estilo para a lista de categorias */
+
   .festival-details ul {
-    list-style: none; /* Remove os marcadores da lista */
-    padding: 0; /* Remove o padding padrão */
-    margin-bottom: 1em; /* Espaçamento abaixo da lista */
+    list-style: none; 
+    padding: 0; 
+    margin-bottom: 1em;
   }
   
   .festival-details li {
@@ -58,7 +77,6 @@
     padding: 25px 0;
   }
   
-  /* Adaptações responsivas */
   @media (max-width: 768px) {
     .festival-details h1 {
       font-size: 2em;

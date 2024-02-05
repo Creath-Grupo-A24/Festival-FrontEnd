@@ -1,31 +1,41 @@
 import axios from 'axios';
 
+const token = localStorage.getItem('token');
+
 const apiBaseUrl = 'http://localhost:8091/v1/events';
-//função sera atualizada
 export const createEvent = async (eventData) => {
     return await axios.post(`${apiBaseUrl}/`, eventData, {
         headers: {
             'Content-Type': 'application/json',
-            // Falta a autorização, sera adicionado apos a inclusão do cookie de sessão
+            'Authorization': `Bearer ${token}`,
         }
     });
 };
-//função sera atualizada
+
 export const uploadRules = async (file, id) => {
     const formData = new FormData();
     formData.append("file", file);
-    return await axios.post(`${apiBaseUrl}/rules/${id}/upload`, formData, {
-        headers: {
-            'Content-Type': 'multipart/form-data',
-            // Falta a autorização, sera adicionado apos a inclusão do cookie de sessão
-        }
-    });
+    console.log("Token do user: ",token);
+    try {
+        const response =  await axios.post(`${apiBaseUrl}/rules/${id}/upload`, formData, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            }
+        });
+        console.log("resposta", response);
+        return response;
+    } catch (error) {
+        console.error('Erro ao fazer upload do arquivo:', error);
+        throw error;      
+    }
 };
-//função sera atualizada
+
 export const downloadRules = async (id) => {
-    return await axios.get(`${apiBaseUrl}/rules/${id}/download`, {
+    return await axios.get(`${apiBaseUrl}/rules/${id}/download`, {        
         responseType: 'blob',
-        // Falta a autorização, sera adicionado apos a inclusão do cookie de sessão
+        headers:{
+            'Authorization': `Bearer ${token}`,
+        }
     });
 };
 
@@ -61,4 +71,15 @@ export const getEvents = async (page, perPage, terms, sort, direction) => {
         throw error;
     }
 };
+
+export const getCategories = async() => {
+    try {
+        const response = await axios.get(`${apiBaseUrl}/categories`);
+        console.log('Resposta do getCategories:',response.data);
+        return response.data;
+    } catch (error) {
+        console.error('Erro ao chamar getCategories:', error);
+        throw error;
+    }
+}
 

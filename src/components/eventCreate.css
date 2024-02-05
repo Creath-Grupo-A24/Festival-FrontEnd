@@ -1,4 +1,4 @@
-.eventSub{
+.createEvent form{
     display: flex;
     flex-direction: column;    background-color: #3282F6;
     border-radius: 10px;
@@ -10,16 +10,6 @@
     font-family: 'Arial', sans-serif;
 }
 
-.eventSub input, textarea{
-    background-color: #f3f3f3;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.createEvent label{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px;
-}
-
-.eventSub label{
-    display: flex;
-    color: blue;
 }

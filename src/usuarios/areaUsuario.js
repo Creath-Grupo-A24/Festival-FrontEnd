@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './userArea.css';
 
-// Função para autenticar usuário
 const authenticateUser = async (email, password) => {
     try {
         const response = await fetch('http://localhost:8091/auth/signin', {
@@ -43,7 +42,6 @@ const UserArea = () => {
 
     const handleRegister = async (e) => {
         e.preventDefault(); 
-        // Redireciona para o componente CadastroUsuario ao clicar em "Cadastrar"
         navigate("/registration");
     };
 

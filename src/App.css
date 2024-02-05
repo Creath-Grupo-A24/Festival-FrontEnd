@@ -66,7 +66,6 @@ nav .nav-links a {
   }
 }
 
-/* Estilos para os cartões de festivais */
 .festival-card {
   background-color: #282c34;
   color: white;
@@ -100,7 +99,6 @@ nav .nav-links a {
   font-size: 1.2rem;
 }
 
-/* Estilos para o conteúdo do cartão */
 .festival-content {
   font-size: 1rem;
   line-height: 1.5;

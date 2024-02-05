@@ -10,6 +10,12 @@ import FestivalDetails from './components/festivalDetails';
 import UserMenuDropdown from './usuarios/UserMenuDropdown';
 import Subscription from './components/eventSub';
 import EventCreate from './components/eventCreate';
+import UserArea from './userArea/userArea';
+import Data from './userArea/userData';
+import CreateCompany from './userArea/createCompany';
+import SubscriptionArea from './userArea/subscriptionsArea';
+import Details from './userArea/detailsSubs';
+import UploadForm from './rules/uploadRules';
 
 function App() {
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -33,7 +39,6 @@ function App() {
       alert('Apenas administrador pode acessar!');
     }
   };
-  
 
   const handleLogout = () => {
     localStorage.removeItem('user'); 
@@ -58,7 +63,14 @@ function App() {
         <Route path='/registration' element={<Cadastro />} />
         <Route path="/festival/:id" element={<FestivalDetails />} />
         <Route path='/inscricao/:id' element={<Subscription />} />
-        <Route path='/create' element={<EventCreate/>}/>
+        <Route path='/create' element={<EventCreate />}/>
+        <Route path="/userarea" element={<UserArea />}>
+          <Route path="data" element={<Data />} />
+          <Route path="createcompany" element={<CreateCompany />} />
+          <Route path='subscriptionlist' element={<SubscriptionArea/>}/>
+          <Route path='details' element={<Details/>}/>
+        </Route>
+        <Route path='uprules' element={<UploadForm/>}/>
       </Routes>
     </div>
   );

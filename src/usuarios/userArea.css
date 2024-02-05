@@ -1,12 +1,12 @@
 .userArea {
-    background-color: #3282F6; /* Cor de fundo azul */
+    background-color: #3282F6;
     border-radius: 10px;
     padding: 40px;
     width: 350px;
-    margin: 100px auto; /* Ajuste conforme necessário para centralizar */
+    margin: 100px auto; 
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    color: white; /* Texto branco */
-    font-family: 'Arial', sans-serif; /* Fonte padrão */
+    color: white; 
+    font-family: 'Arial', sans-serif; 
 }
 
 .userArea label {
@@ -39,7 +39,6 @@
     margin-bottom: 20px;
 }
 
-/* Link para 'Esqueceu a senha?' e 'Cadastre-se' */
 .userArea a {
     color: white;
     text-decoration: underline;
@@ -49,28 +48,24 @@
     text-align: center;
 }
 
-/* Botão de cadastro com estilo diferente */
 .userArea button.register {
     background-color: transparent;
     color: white;
     border:none;
-    padding: 8px 16px; /* Ajuste o padding conforme necessário */
-    font-size: 0.9em; /* Ajuste o tamanho da fonte se necessário */
-    margin: 5px auto; /* Reduz a margem externa */
+    padding: 8px 16px; 
+    font-size: 0.9em; 
+    margin: 5px auto;
     display: block;
     width: fit-content;
     font-family: 'Arial', sans-serif;
     font-weight: bold;
 }
 
-
-/* Remove o float e utiliza flex para melhor alinhamento e responsividade */
 .userArea {
     display: flex;
     flex-direction: column;
 }
 
-/* Ajusta o espaçamento e alinhamento dos botões */
 .userArea button.login {
     background-color: #fff; 
     color: #2C05F2;
@@ -83,18 +78,15 @@
     font-weight: bold;
     width: fit-content; 
     display: block;
-    margin-left: auto; /* Centraliza o botão na div */
-    margin-right: auto; /* Centraliza o botão na div */
+    margin-left: auto; 
+    margin-right: auto;
 }
 
-
-/* Ajusta a cor do texto dos inputs para contraste com o fundo */
 .userArea input {
     color: #333;
     background-color: white;
 }
 
-/* Ajusta o espaçamento e alinhamento do formulário */
 .userArea form {
     display: flex;
     flex-direction: column;
@@ -103,6 +95,6 @@
 .registerBtn label {
     display: block;
     text-align: center;
-    margin-bottom: -15px; /* Valor reduzido para diminuir o espaço entre o label e o botão */
-    font-size: 0.9em; /* Ajuste o tamanho da fonte se necessário */
+    margin-bottom: -15px;
+    font-size: 0.9em; 
 }
