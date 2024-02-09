@@ -39,10 +39,6 @@ function App() {
   const headerStyle = {
     backgroundColor: scrolling ? "rgba(10, 10, 10, .9)" : "transparent",
   };
-  const headerTextColor = {
-    color: scrolling ? "#fff" : "#fff",
-    transition: ".5s",
-  };
 
   //handle req
   console.log(user);
@@ -79,12 +75,11 @@ function App() {
           />
         </Link>
         <div className="nav-links">
-          <Link className="nav_link" style={headerTextColor} to="/">
+          <Link className="nav_link" to="/">
             Home
           </Link>
           {userString.roles && userString.roles.includes("ADMIN") && (
             <button
-              style={headerTextColor}
               className="btnEvento nav_link"
               onClick={handleEventCreate}
             >
@@ -92,14 +87,13 @@ function App() {
             </button>
           )}
           <button
-            style={headerTextColor}
             className="btnArea nav_link"
             onClick={handleUserAreaClick}
           >
             Área Usuário
           </button>
           {user != null && (
-            <UserMenuDropdown onLogout={handleLogout} style={headerTextColor} />
+            <UserMenuDropdown onLogout={handleLogout} />
           )}
         </div>
       </nav>

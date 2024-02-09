@@ -59,6 +59,7 @@ nav .nav-links {
 
 nav .nav-links a {
   margin: 0 20px;
+  color: #fff;
 }
 
 /* Ajuste de responsividade */
@@ -128,4 +129,5 @@ nav .nav-links a {
 
 button {
   cursor: pointer;
+  color: #fff;
 }
