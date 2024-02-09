@@ -1,26 +1,22 @@
 .festivais-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  padding-top: 15vh;
-  -webkit-box-shadow: inset 0px 50px 86px 29px rgba(0, 0, 0, 1);
-  -moz-box-shadow: inset 0px 50px 86px 29px rgba(0, 0, 0, 1);
-  box-shadow: inset 0px 50px 86px 29px rgba(0, 0, 0, 1);
+  gap: 25px;
+  margin: 300px auto 100px auto;
+  max-width: 90%;
 }
 
 .festival-item {
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   position: relative;
-  height: 38vh;
-  width: 22vw;
   transition: 0.5s;
+  height: 250px;
 }
 
 .festival-item:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
-  transform: scale(1.01);
+  transform: scale(0.9);
 }
 
 .festival-item img {
@@ -99,12 +95,8 @@
   box-sizing: border-box;
 }
 
-@media (max-width: 768px) {
-  .festival-item {
-    width: 100%;
-    height: 54vh;
-  }
-  .festivais-container {
-    padding-top: 30vh;
-  }
+.loading {
+  color: white;
+  font-size: 1.7rem;
+  margin-top: 20%;
 }
