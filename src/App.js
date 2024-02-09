@@ -1,31 +1,30 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import logo from "./logo.png";
 // Components
-import Home from './components/festivais';
-import User from './usuarios/loginUsuario';
-import Cadastro from './usuarios/cadastroUsuario';
+import Home from './app/home/home.page';
 import FestivalDetails from './components/festivalDetails';
-import UserMenuDropdown from './usuarios/UserMenuDropdown';
 import Subscription from './components/eventSub';
 import EventCreate from './components/eventCreate';
-import UserArea from './userArea/userArea';
-import Data from './userArea/userData';
 import CreateCompany from './userArea/createCompany';
 import SubscriptionArea from './userArea/subscriptionsArea';
 import Details from './userArea/detailsSubs';
 import UploadForm from './rules/uploadRules';
+import LoginPage from "./app/auth/login/login.page";
+import { AuthServiceFactory } from "./services/auth.service";
 
 function App() {
-  const [showUserMenu, setShowUserMenu] = useState(false);
+  const [user, setUser] = useState(null);
   const [scrolling, setScrolling] = useState(false);
-  const navigate = useNavigate();
-  const user = localStorage.getItem("user");
-  const userString = user ? JSON.parse(user) : {};
 
-  // handle scroll
   useEffect(() => {
+    AuthServiceFactory.create().getUser().then((user) => {
+      if (user) {
+        setUser(user);
+      }
+    });
+
     const handleScroll = () => {
       setScrolling(window.scrollY > 0);
     };
@@ -40,78 +39,44 @@ function App() {
     backgroundColor: scrolling ? "rgba(10, 10, 10, .9)" : "transparent",
   };
 
-  //handle req
-  console.log(user);
-  const handleUserAreaClick = () => {
-    if (user) {
-      setShowUserMenu(!showUserMenu);
-    } else {
-      navigate("/loginusuario");
-    }
-  };
-
-  const handleEventCreate = () => {
-    if (userString.roles && userString.roles.includes("ADMIN")) {
-      navigate("/create");
-    } else {
-      alert("Apenas administrador pode acessar!");
-    }
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    setShowUserMenu(false);
-    navigate("/");
-  };
-
   return (
-    <div className="App">
-      <nav className="header" style={headerStyle}>
-        <Link to={"/"}>
-          <img
-            src={logo}
-            className="App-logo"
-            alt="logo"
-          />
-        </Link>
-        <div className="nav-links">
-          <Link className="nav_link" to="/">
-            Home
+    <div className="app-container">
+      <div className="app-header-container" style={headerStyle}>
+        <div className="app-header-logo">
+          <Link to={"/"}>
+            <img
+              src={logo}
+              className="app-logo"
+              alt="logo"
+            />
           </Link>
-          {userString.roles && userString.roles.includes("ADMIN") && (
-            <button
-              className="btnEvento nav_link"
-              onClick={handleEventCreate}
-            >
-              Criar Evento
-            </button>
-          )}
-          <button
-            className="btnArea nav_link"
-            onClick={handleUserAreaClick}
-          >
-            Área Usuário
-          </button>
-          {user != null && (
-            <UserMenuDropdown onLogout={handleLogout} />
-          )}
         </div>
-      </nav>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/loginusuario" element={<User />} />
-        <Route path="/registration" element={<Cadastro />} />
-        <Route path="/festival/:id" element={<FestivalDetails />} />
-        <Route path='/inscricao/:id' element={<Subscription />} />
-        <Route path='/create' element={<EventCreate />}/>
-        <Route path="/userarea" element={<UserArea />}>
-          <Route path="data" element={<Data />} />
-          <Route path="createcompany" element={<CreateCompany />} />
-          <Route path='subscriptionlist' element={<SubscriptionArea/>}/>
-          <Route path='details' element={<Details/>}/>
-        </Route>
-        <Route path='uprules' element={<UploadForm/>}/>
-      </Routes>
+        <nav className="app-header-content">
+          <div className="nav-links">
+            <Link className="nav-link" to="/">Home</Link>
+            <Link className="nav-link" to={user ? "/profile" : "/signin"}>Área usuário</Link>
+          </div>
+        </nav>
+
+      </div>
+
+      <main className="app-content-container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signin" element={<LoginPage />} />
+          
+          <Route path="/festival/:id" element={<FestivalDetails />} />
+          <Route path='/inscricao/:id' element={<Subscription />} />
+          <Route path='/create' element={<EventCreate />} />
+          <Route path="/userarea" element={<div></div>}>
+            <Route path="data" element={<div></div>} />
+            <Route path="createcompany" element={<CreateCompany />} />
+            <Route path='subscriptionlist' element={<SubscriptionArea />} />
+            <Route path='details' element={<Details />} />
+          </Route>
+          <Route path='uprules' element={<UploadForm />} />
+        </Routes>
+      </main>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './cadastroUsuario.css';
+import './register.css';
 import { useNavigate } from 'react-router-dom';
 import {registerUser} from './userService';
 import {listRoles} from '../usuarios/userService';
@@ -34,7 +34,7 @@ function validarNumeroTelefone(numero) {
     return padraoTelefone.test(numero.replace(/[^0-9]+/g, ''));
 }
 
-function CadastroUsuario() {
+function RegisterPage() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
@@ -189,4 +189,4 @@ function CadastroUsuario() {
     );
 }
 
-export default CadastroUsuario;
+export default RegisterPage;
