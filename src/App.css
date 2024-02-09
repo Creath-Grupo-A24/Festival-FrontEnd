@@ -9,7 +9,7 @@
 .app-container::before {
   content: "";
   position: absolute;
-  background-image: url("./../public/banner.jpg");
+  background-image: url("../public/banner.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -90,17 +90,19 @@
 /* Ajuste de responsividade */
 @media (max-width: 600px) {
   .app-header-container {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
   }
 
   .nav-links {
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
     width: 100%;
   }
 
   .nav-link {
+    padding: 20px;
     margin: 10px 0;
   }
 }

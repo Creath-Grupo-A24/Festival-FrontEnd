@@ -22,26 +22,15 @@ function App() {
     AuthServiceFactory.create().getUser().then((user) => {
       if (user) {
         setUser(user);
-      }
+      } else setUser(null);
     });
 
-    const handleScroll = () => {
-      setScrolling(window.scrollY > 0);
-    };
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
   }, []);
 
-  const headerStyle = {
-    backgroundColor: scrolling ? "rgba(10, 10, 10, .9)" : "transparent",
-  };
 
   return (
     <div className="app-container">
-      <div className="app-header-container" style={headerStyle}>
+      <div className="app-header-container">
         <div className="app-header-logo">
           <Link to={"/"}>
             <img

@@ -1,6 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import "./footer.css";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -29,11 +30,8 @@ const Footer = () => {
         <div className="footerNav">
           <ul>
             <li>
-              <a href="">Home</a>
-              <a href="">News</a>
-              <a href="">About</a>
-              <a href="">Contact Us</a>
-              <a href="">Our Team</a>
+              <Link to="/">Home</Link>
+              <Link to="/">Contact Us</Link>
             </li>
           </ul>
         </div>
