@@ -6,7 +6,7 @@ export class AuthService {
     this.baseApiUrl = baseApiUrl;
   }
 
-  async login(username, password) {
+  async login({ username, password }) {
     const response = await fetch(`${this.baseApiUrl}/in`, {
       method: "POST",
       headers: {
@@ -102,6 +102,23 @@ export class AuthService {
       Cookies.remove("token");
       return { error: error }
     }
+  }
+
+  async logout() {
+    Cookies.remove("token");
+  }
+
+  async listRoles() {
+    const response = await fetch(`${this.baseApiUrl}/roles`, {
+      method: "GET",
+    });
+
+    if (!response.ok) {
+      return { error: `Unexpected HTTP status: ${response.status}` };
+    }
+
+    const roles = await response.json();
+    return roles;
   }
 }
 

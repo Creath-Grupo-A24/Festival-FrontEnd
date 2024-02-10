@@ -1,4 +1,4 @@
-.form-area {
+.login-form-area {
   background: transparent;
   backdrop-filter: blur(20px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -10,29 +10,17 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   color: white;
   font-family: "Arial", sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
-.form-group {
+.login-form-group {
   position: relative;
   height: 8vh;
   margin-bottom: 50px;
 }
 
-.form-area a {
-  color: white;
-  text-decoration: underline;
-  cursor: pointer;
-  display: block;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.form-area {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group input {
+.login-form-group input {
   width: 100%;
   height: 100%;
   background: transparent;
@@ -45,22 +33,22 @@
   padding: 20px 45px 20px 20px;
 }
 
-.form-group input::placeholder {
+.login-form-group input::placeholder {
   color: #fff;
   font-size: 16px;
 }
 
-.form-group input:-webkit-autofill,
-.form-group input:-webkit-autofill:hover, 
-.form-group input:-webkit-autofill:focus, 
-.form-group input:-webkit-autofill:active{
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: #ffffff;
-    transition: background-color 5000s ease-in-out 0s;
-    box-shadow: inset 0 0 20px 20px #23232329;
+.login-form-group input:-webkit-autofill,
+.login-form-group input:-webkit-autofill:hover,
+.login-form-group input:-webkit-autofill:focus,
+.login-form-group input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #ffffff;
+  transition: background-color 5000s ease-in-out 0s;
+  box-shadow: inset 0 0 20px 20px #23232329;
 }
 
-.form-group i {
+.login-form-group i {
   position: absolute;
   right: 20px;
   top: 50%;
@@ -68,7 +56,23 @@
   font-size: 20px;
 }
 
-.form-area button.login {
+.login-form-area .register-link {
+  font-size: 14.5px;
+  text-align: center;
+  margin-top: 20px;
+  margin: 20px 0 15px;
+}
+
+.login-form-area a {
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+  display: block;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.login-form-area button.login {
   width: 100%;
   height: 45px;
   background: #fff;
@@ -80,11 +84,10 @@
   font-size: 16px;
   color: #333;
   font-weight: 600;
+  transition: 0.3s;
 }
 
-.form-area .register-link {
-  font-size: 14.5px;
-  text-align: center;
-  margin-top: 20px;
-  margin: 20px 0 15px;
+.login-form-area button.login:hover {
+  background: #cecece;
+  color: black;
 }

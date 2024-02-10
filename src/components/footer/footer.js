@@ -17,13 +17,13 @@ const Footer = () => {
       </Helmet>
       <div className="footerContainer">
         <div className="socialIcons">
-          <a href="">
+          <a href="https://facebook.com/">
             <i className="fa-brands fa-facebook"></i>
           </a>
-          <a href="">
+          <a href="https://instagram.com/">
             <i className="fa-brands fa-instagram"></i>
           </a>
-          <a href="">
+          <a href="https://twitter.com/">
             <i className="fa-brands fa-twitter"></i>
           </a>
         </div>

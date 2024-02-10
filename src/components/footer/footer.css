@@ -12,9 +12,9 @@ footer {
   width: 100%;
   padding: 70px 30px 20px;
 }
-.socialIcons{
-    display: flex;
-    justify-content: center;
+.socialIcons {
+  display: flex;
+  justify-content: center;
 }
 
 .socialIcons a {
@@ -38,7 +38,7 @@ footer {
 
 .socialIcons a:hover i {
   color: white;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 .footerNav {

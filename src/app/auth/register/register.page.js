@@ -1,57 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import './register.css';
 import { useNavigate } from 'react-router-dom';
-import {registerUser} from './userService';
-import {listRoles} from '../usuarios/userService';
+import Cookies from 'js-cookie';
+import { AuthServiceFactory } from '../../../services/auth.service';
+import { registerHandler } from '../../../handlers/auth.handler';
+import { Helmet } from 'react-helmet';
 
-function validarCPF(cpf) {
-    cpf = cpf.replace(/[^\d]+/g, ''); // Remove caracteres não numéricos
-    if (cpf.length !== 11 || !!cpf.match(/(\d)\1{10}/)) return false;
-
-    let soma = 0;
-    let resto;
-    
-    for (let i = 1; i <= 9; i++)
-        soma = soma + parseInt(cpf.substring(i - 1, i)) * (11 - i);
-    resto = (soma * 10) % 11;
-
-    if ((resto === 10) || (resto === 11)) resto = 0;
-    if (resto !== parseInt(cpf.substring(9, 10))) return false;
-
-    soma = 0;
-    for (let i = 1; i <= 10; i++)
-        soma = soma + parseInt(cpf.substring(i - 1, i)) * (12 - i);
-    resto = (soma * 10) % 11;
-
-    if ((resto === 10) || (resto === 11)) resto = 0;
-    if (resto !== parseInt(cpf.substring(10, 11))) return false;
-    return true;
-}
-
-function validarNumeroTelefone(numero) {
-    // Regex para validar número de telefone no formato (XX) 9XXXX-XXXX
-    const padraoTelefone = /^\d{2}9\d{8}$/;
-    return padraoTelefone.test(numero.replace(/[^0-9]+/g, ''));
-}
-
-function RegisterPage() {
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
-    const [name, setName] = useState('');
-    const [birthDate, setBirthDate] = useState('');
-    const [roleId, setRoleId] = useState('');
-    const [cpf, setCpf] = useState('');
-    const [phone, setPhone] = useState('');
-    const [roles, setRoles] = useState([]);
-
+function RegisterPage({ setExistsUser }) {
     const navigate = useNavigate();
+    const [roles, setRoles] = useState([])
+    useEffect(() => {
+        if (Cookies.get("token")) navigate("/profile");
+    });
 
     useEffect(() => {
         const fetchRoles = async () => {
             try {
-                const fetchedRoles = await listRoles();
-                setRoles(fetchedRoles); 
+                const fetchedRoles = await AuthServiceFactory.create().listRoles();
+                setRoles(fetchedRoles);
             } catch (error) {
                 console.error('Erro ao buscar roles:', error);
             }
@@ -60,130 +26,96 @@ function RegisterPage() {
         fetchRoles();
     }, []);
 
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        const formattedBirthDate = birthDate ? new Date(birthDate + 'T00:00:00').toLocaleDateString('pt-BR', {
-            timeZone: 'UTC' 
-        }) : '';
-
-        if (!validarCPF(cpf)) {
-            alert('CPF inválido!');
-            return; 
+    const handleSubmit = async function (e) {
+        const error = await registerHandler(e);
+        if (error){
+            alert('Erro ao cadastrar usuário!')
+            e.target.reset();
+        } else {
+          setExistsUser(true);
+          navigate("/");
         }
-
-        if (!validarNumeroTelefone(phone)) {
-            alert('Número de telefone inválido!');
-            return; 
-        }
-
-        const userData = {
-            username,
-            email,
-            password: senha,
-            name,
-            birth_date: formattedBirthDate.toString(),
-            role_id: parseInt(roleId, 10),
-            cpf,
-            phone: phone || null
-        };
-
-        console.log('Dados enviados:', JSON.stringify(userData));
-
-
-        try {
-            const response = await registerUser(userData);
-            if (response) {
-                console.log('Dados do usuário cadastrados com sucesso', response);
-                navigate('/loginusuario');
-            }
-        } catch (error) {
-            console.error('Erro ao enviar dados do usuário:', error);
-        }
-    };
+      };
 
     return (
-        <div className="cadastro-container">
-            <h2>Cadastro de Usuário</h2>
+        <div className="register-form-area">
+            <Helmet>
+                <link
+                    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+                    rel="stylesheet"
+                />
+            </Helmet>
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Username:</label>
+                <div className='register-form-group'>
+                    <label>Usuário:</label>
                     <input
+                        name='username'
                         type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
                         required
                     />
                 </div>
-                <div>
+                <div className='register-form-group'>
                     <label>Email:</label>
                     <input
+                        name='email'
                         type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                 </div>
-                <div>
+                <div className='register-form-group'>
                     <label>Senha:</label>
                     <input
+                        name='password'
                         type="password"
-                        value={senha}
-                        onChange={(e) => setSenha(e.target.value)}
                         required
                     />
                 </div>
-                <div>
+                <div className='register-form-group'>
                     <label>Nome Completo:</label>
                     <input
+                        name='name'
                         type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
                         required
                     />
                 </div>
-                <div>
+                <div className='register-form-group'>
                     <label>Data de Nascimento:</label>
                     <input
+                        name='birth_date'
                         type="date"
-                        value={birthDate}
-                        onChange={(e) => setBirthDate(e.target.value)}
                         required
                     />
                 </div>
-                <div>
-                    <label>Tipo de Usuário (Role ID):</label>
+                <div className='register-form-group'>
+                    <label>Tipo de Usuário:</label>
                     <select
-                        value={roleId}
-                        onChange={(e) => setRoleId(e.target.value)}
+                        name='role_id'
                         required
                     >
                         <option value="">Selecione um Tipo</option>
                         {roles.map((role) => (
-                            <option key={role.id} value={role.id}>{role.type}</option>
+                            <option key={role.id} value={role.id}>{role.description}</option>
                         ))}
                     </select>
                 </div>
-                <div>
+                <div className='register-form-group'>
                     <label>CPF:</label>
                     <input
+                        name='cpf'
                         type="text"
-                        value={cpf}
-                        onChange={(e) => setCpf(e.target.value)}
                         required
                     />
                 </div>
-                <div>
+                <div className='register-form-group'>
                     <label>Telefone:</label>
                     <input
+                        name='phone'
                         type="text"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
                     />
                 </div>
-                <button className='btCadastra' type="submit">Cadastrar</button>
-                <button className='btVolta' onClick={() => navigate('/loginusuario')}>Voltar para login</button>
+                <button className="cadastrar" type="submit">
+                    Cadastrar
+                </button>
             </form>
         </div>
     );

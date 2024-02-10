@@ -13,6 +13,8 @@ import UploadForm from './rules/uploadRules';
 import LoginPage from "./app/auth/login/login.page";
 import Header from "./components/header/header";
 import Cookies from "js-cookie";
+import Footer from "./components/footer/footer";
+import RegisterPage from "./app/auth/register/register.page";
 
 function App() {
   const [existsUser, setExistsUser] = useState(false);
@@ -29,7 +31,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<LoginPage setExistsUser={setExistsUser} />} />
-
+          <Route path="/signup" element={<RegisterPage setExistsUser={setExistsUser} />} />
           <Route path="/festival/:id" element={<FestivalDetails />} />
           <Route path='/inscricao/:id' element={<Subscription />} />
           <Route path='/create' element={<EventCreate />} />
@@ -42,6 +44,8 @@ function App() {
           <Route path='uprules' element={<UploadForm />} />
         </Routes>
       </main>
+
+      <Footer />
     </div>
   );
 }

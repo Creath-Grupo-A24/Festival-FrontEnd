@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 import { loginHandler } from "../../../handlers/auth.handler";
 import { Helmet } from "react-helmet";
+import Cookies from "js-cookie";
 
 const LoginPage = ({ setExistsUser }) => {
   let navigate = useNavigate();
+
+  useEffect(() => {
+    if (Cookies.get("token")) navigate("/profile");
+  });
+
   const handleSubmit = async function (e) {
     const error = await loginHandler(e);
     if (error) navigate("/signin");
@@ -17,29 +23,29 @@ const LoginPage = ({ setExistsUser }) => {
 
 
   return (
-    <div className="form-area">
+    <div className="login-form-area">
       <Helmet>
         <link
           href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
           rel="stylesheet"
         />
       </Helmet>
-      <form className="login-form" onSubmit={handleSubmit}>
-        <div className="form-group">
+      <form onSubmit={handleSubmit}>
+        <div className="login-form-group">
           <input
             type="text"
             name="username"
-            placeholder="Digite seu nome de usuário"
+            placeholder="Usuário"
             autoComplete="username"
             required
           />
           <i className="bx bxs-user"></i>
         </div>
-        <div className="form-group">
+        <div className="login-form-group">
           <input
             name="password"
             type="password"
-            placeholder="Digite sua senha"
+            placeholder="Senha"
             autoComplete="password"
             required
           />

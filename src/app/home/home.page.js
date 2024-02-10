@@ -4,7 +4,6 @@ import { getEvents } from "../../components/festivalService";
 import moment from "moment";
 import Slider from "../../components/festivalSlider";
 import ScrollObserver from "../../components/utils/ScrollObserver";
-import Footer from "../../components/footer";
 import "./home.css";
 
 const Festivais = () => {
@@ -67,7 +66,6 @@ const Festivais = () => {
           </div>
         )}
       </div>
-      <Footer />
     </div>
   );
 };
