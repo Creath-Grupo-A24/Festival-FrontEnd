@@ -17,14 +17,14 @@
 }
 
 .SOLO {
-  background-image: url("../img/solo.jpg");
+  background-image: url("../../public/solo.jpg");
 }
 .DUO {
-  background-image: url("../img/duo.jpg");
+  background-image: url("../../public/duo.jpg");
 }
 .TRIO {
-  background-image: url("../img/trio.jpg");
+  background-image: url("../../public/trio.jpg");
 }
 .EQUIPE {
-  background-image: url("../img/equipe.jpg");
+  background-image: url("../../public/equipe.jpg");
 }

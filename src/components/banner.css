@@ -8,7 +8,7 @@
 .banner {
   width: 100%;
   height: 100%;
-  background-image: url("../img/banner.jpg");
+  background-image: url("../../public/banner.jpg");
   background-size: cover;
   background-position: center center;
   -webkit-box-shadow: inset 0px -102px 58px 27px rgba(0, 0, 0, 1);
