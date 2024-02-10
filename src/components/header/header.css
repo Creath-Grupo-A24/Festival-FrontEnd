@@ -1,0 +1,80 @@
+.app-logo {
+  margin-left: 15px;
+  height: 7vmin;
+  pointer-events: none;
+  filter: invert(100%);
+}
+
+.app-header-container {
+  background-color: transparent;
+  position: sticky;
+  width: 100%;
+  height: 70px;
+  top: 0;
+  left: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  z-index: 999;
+  transition: 0.5s;
+}
+
+.app-header-logo {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.app-header-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 300px;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-size: 1.4rem;
+  color: #fff;
+  font-weight: 600;
+  transition: 0.5s;
+}
+
+.nav-link::after {
+  content: "";
+  height: 2px;
+  width: 0;
+  background: rgb(170, 6, 6);
+  display: block;
+  transition: 0.5s;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Ajuste de responsividade */
+@media (max-width: 600px) {
+  .app-header-container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .nav-link {
+    padding: 20px;
+    margin: 10px 0;
+  }
+}

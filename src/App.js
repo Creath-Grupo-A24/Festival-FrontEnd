@@ -1,7 +1,6 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import logo from "./logo.png";
+import React, { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 // Components
 import Home from './app/home/home.page';
 import FestivalDetails from './components/festivalDetails';
@@ -12,48 +11,25 @@ import SubscriptionArea from './userArea/subscriptionsArea';
 import Details from './userArea/detailsSubs';
 import UploadForm from './rules/uploadRules';
 import LoginPage from "./app/auth/login/login.page";
-import { AuthServiceFactory } from "./services/auth.service";
+import Header from "./components/header/header";
+import Cookies from "js-cookie";
 
 function App() {
-  const [user, setUser] = useState(null);
-  const [scrolling, setScrolling] = useState(false);
+  const [existsUser, setExistsUser] = useState(false);
 
   useEffect(() => {
-    AuthServiceFactory.create().getUser().then((user) => {
-      if (user) {
-        setUser(user);
-      } else setUser(null);
-    });
-
+      Cookies.get("token") ? setExistsUser(true) : setExistsUser(false);
   }, []);
-
 
   return (
     <div className="app-container">
-      <div className="app-header-container">
-        <div className="app-header-logo">
-          <Link to={"/"}>
-            <img
-              src={logo}
-              className="app-logo"
-              alt="logo"
-            />
-          </Link>
-        </div>
-        <nav className="app-header-content">
-          <div className="nav-links">
-            <Link className="nav-link" to="/">Home</Link>
-            <Link className="nav-link" to={user ? "/profile" : "/signin"}>Área usuário</Link>
-          </div>
-        </nav>
-
-      </div>
+      <Header existsUser={existsUser} setExistsUser={setExistsUser} />
 
       <main className="app-content-container">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/signin" element={<LoginPage />} />
-          
+          <Route path="/signin" element={<LoginPage setExistsUser={setExistsUser} />} />
+
           <Route path="/festival/:id" element={<FestivalDetails />} />
           <Route path='/inscricao/:id' element={<Subscription />} />
           <Route path='/create' element={<EventCreate />} />

@@ -7,6 +7,6 @@ export async function loginHandler(e) {
   let username = formData.get('username');
   let password = formData.get('password');
 
-  const error = AuthServiceFactory.create().login(username, password);
+  const error = await AuthServiceFactory.create().login(username, password);
   if (error) return error;
 }

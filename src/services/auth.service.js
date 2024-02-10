@@ -91,14 +91,16 @@ export class AuthService {
         },
       });
 
-      if (response.status === 401) {
+      if (response.status === 401 || response.status === 404) {
+        Cookies.remove("token");
         return { error: "Usuário não autenticado" };
       }
 
       let user = await response.json();
       return user;
     } catch (error) {
-      console.log(error);
+      Cookies.remove("token");
+      return { error: error }
     }
   }
 }

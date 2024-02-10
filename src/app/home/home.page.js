@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { getEvents } from "../../components/festivalService";
 import moment from "moment";
 import Slider from "../../components/festivalSlider";
-import Banner from "../../components/banner";
 import ScrollObserver from "../../components/utils/ScrollObserver";
 import Footer from "../../components/footer";
 import "./home.css";
