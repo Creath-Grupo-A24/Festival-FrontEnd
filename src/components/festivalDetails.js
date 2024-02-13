@@ -83,7 +83,7 @@ const FestivalDetails = () => {
       alert(
         "Faça o login antes de continuar, você sera enviado para a pagina de login"
       );
-      navigate("/loginusuario");
+      navigate("/signin");
     }
   };
 

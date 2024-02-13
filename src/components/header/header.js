@@ -2,32 +2,28 @@ import { Link } from "react-router-dom";
 import UserDropdown from "./user-dropdown";
 import "./header.css";
 
-function Header({existsUser, setExistsUser}) {
-
+function Header({ existsUser, setExistsUser, user }) {
   return (
     <header className="app-header-container">
       <div className="app-header-logo">
         <Link to={"/"}>
-          <img
-            src="/logo.png"
-            className="app-logo"
-            alt="logo"
-          />
+          <img src="/logo.png" className="app-logo" alt="logo" />
         </Link>
       </div>
       <nav className="app-header-content">
         <div className="nav-links">
-          <Link className="nav-link" to="/">Home</Link>
-          <Link className="nav-link" to={existsUser ? "/profile" : "/signin"}>Área usuário</Link>
+          <Link className="nav-link" to="/">
+            Home
+          </Link>
+          <Link className="nav-link" to={existsUser ? "/profile" : "/signin"}>
+            Área usuário
+          </Link>
         </div>
       </nav>
 
-      {existsUser && (
-        <UserDropdown setUser={setExistsUser} />
-      )}
-
+      {existsUser && <UserDropdown setExistsUser={setExistsUser} user={user} />}
     </header>
-  )
+  );
 }
 
 export default Header;
