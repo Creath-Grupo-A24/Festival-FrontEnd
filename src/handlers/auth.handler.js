@@ -15,19 +15,19 @@ export async function registerHandler(e) {
   const formData = new FormData(e.target);
   const registerData = Object.fromEntries(formData.entries());
   registerData.role_id = parseInt(registerData.role_id);
-  registerData.birth_date = moment(registerData.birth_date).format('dd/MM/yyyy');
+  registerData.birth_date = moment(registerData.birth_date).format(
+    "DD/MM/yyyy"
+  );
 
   if (!validarCPF(registerData.cpf)) {
-    alert('CPF inválido!');
+    alert("CPF inválido!");
     return;
   }
 
   if (registerData.phone && !validarNumeroTelefone(registerData.phone)) {
-    alert('Número de telefone inválido!');
+    alert("Número de telefone inválido!");
     return;
   }
-
   const error = await AuthServiceFactory.create().register(registerData);
   if (error) return error;
 }
-
