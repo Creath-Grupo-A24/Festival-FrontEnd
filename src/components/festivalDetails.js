@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { AuthServiceFactory } from '../services/auth.service';
-import { SubscriptionServiceFactory } from '../services/subscription.service';
-import UploadForm from '../rules/uploadRules';
-import './festivalDetails.css';
-import { EventServiceFactory } from '../services/event.service';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { AuthServiceFactory } from "../services/auth.service";
+import { SubscriptionServiceFactory } from "../services/subscription.service";
+import moment from "moment";
+import UploadForm from "../rules/uploadRules";
+import "./festivalDetails.css";
+import { EventServiceFactory } from "../services/event.service";
 
 const FestivalDetails = () => {
   let { id } = useParams();
@@ -14,7 +15,9 @@ const FestivalDetails = () => {
   const [user, setUser] = useState(null);
   const [showUploadForm, setShowUploadForm] = useState(false);
   const eventService = EventServiceFactory.create();
-  const subscriptionService = SubscriptionServiceFactory.getInstance('http://localhost:8091/v1/subscription');
+  const subscriptionService = SubscriptionServiceFactory.getInstance(
+    "http://localhost:8091/v1/subscription"
+  );
 
   useEffect(() => {
     const fetchFestivalDetails = async () => {
@@ -22,7 +25,7 @@ const FestivalDetails = () => {
         const fetchedFestival = await eventService.getEventById(id);
         setFestival(fetchedFestival);
       } catch (error) {
-        console.error('Erro ao buscar detalhes do evento', error);
+        console.error("Erro ao buscar detalhes do evento", error);
       }
     };
 
@@ -36,8 +39,8 @@ const FestivalDetails = () => {
         const userObject = await userService.getUser();
         setUser(userObject);
       } catch (error) {
-        console.error('Error fetching user data:', error);
-        navigate('/loginusuario');
+        console.error("Error fetching user data:", error);
+        navigate("/loginusuario");
       }
     }
 
@@ -47,25 +50,32 @@ const FestivalDetails = () => {
   const fetchSubscriptions = async () => {
     try {
       const options = {
-        page: 0, 
-        perPage: 10, 
-        terms: '', 
-        sort: 'time', 
-        direction: 'ASC' 
+        page: 0,
+        perPage: 10,
+        terms: "",
+        sort: "time",
+        direction: "ASC",
       };
-      const response = await subscriptionService.getSubscriptionByEventId(id, options);
+      const response = await subscriptionService.getSubscriptionByEventId(
+        id,
+        options
+      );
       setSubscriptions(response.items);
     } catch (error) {
-      console.error('Erro ao buscar inscrições:', error);
+      console.error("Erro ao buscar inscrições:", error);
     }
   };
-  
+
   const redirectToInscriptionPage = () => {
-    if (user && user.roles && (user.roles.includes('MANAGER') || user.roles.includes('DANCER'))) {
+    if (
+      user &&
+      user.roles &&
+      (user.roles.includes("MANAGER") || user.roles.includes("DANCER"))
+    ) {
       navigate(`/inscricao/${id}`);
     } else {
-      alert('Apenas gerentes e dançarinos podem realizar inscrição!');
-      navigate('/'); 
+      alert("Apenas gerentes e dançarinos podem realizar inscrição!");
+      navigate("/");
     }
   };
 
@@ -73,15 +83,15 @@ const FestivalDetails = () => {
     try {
       const blob = await eventService.downloadRules(eventId);
       const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
+      const link = document.createElement("a");
       link.href = url;
-      link.setAttribute('download', 'rules.pdf');
+      link.setAttribute("download", "rules.pdf");
       document.body.appendChild(link);
       link.click();
       window.URL.revokeObjectURL(url);
       link.remove();
     } catch (error) {
-      console.error('Erro ao baixar as regras:', error);
+      console.error("Erro ao baixar as regras:", error);
     }
   };
 
@@ -93,37 +103,77 @@ const FestivalDetails = () => {
     return <div>Evento não encontrado.</div>;
   }
   console.log(subscriptions);
+
+  function monthName(n) {
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    return months[n - 1];
+  }
+
   return (
     <div className="festival-details">
-      <h1>{festival.name}</h1>
-      <p>{festival.description}</p>
-      <p>Data: {festival.time}</p> 
-      <p>Local: {festival.place}</p>
-      <ul>
-        {festival.categories.map((categoria, index) => (
-          <li key={index}>{categoria.type}</li> 
-        ))}
-      </ul>
-      <button onClick={redirectToInscriptionPage} className="btn-inscription">Inscrever no Festival</button>
-      <button onClick={fetchSubscriptions}>Ver inscrições</button> 
-      {user && user.roles && user.roles.includes('ADMIN') && (
-        <button onClick={handleShowUploadForm}>Subir regras</button>
-      )}
-      {showUploadForm && <UploadForm id={id} />}
-      {user && (user.roles.includes('ADMIN') || user.roles.includes('MANAGER')) && (
-        <button onClick={() => handleDownload(id)}>Download regras</button>
-      )}
+      <div className="head">
+        <span className="date">
+          <em className="day">{moment(festival.time).format("DD")}</em>
+          <em className="month">
+            {monthName(moment(festival.time).format("MM"))}
+          </em>
+        </span>
+        <h1 className="name">{festival.name}</h1>
+      </div>
+      <div className="info">
+        <p>{festival.description}</p>
+        <p>Horário: {moment(festival.time).format("HH:mm")}</p>
+        <p>Local: {festival.place}</p>
+        <ul>
+          {festival.categories.map((categoria, index) => (
+            <li key={index}>{categoria.type}</li>
+          ))}
+        </ul>
+      </div>
+      <div className="buttons">
+        <button onClick={redirectToInscriptionPage} className="btn-inscription">
+          Inscrever no Festival
+        </button>
+        <button onClick={fetchSubscriptions}>Ver inscrições</button>
+        {user && user.roles.includes("ADMIN") && (
+          <button onClick={handleShowUploadForm}>Subir regras</button>
+        )}
+        {showUploadForm && <UploadForm id={id} />}
+        {user &&
+          (user.roles.includes("ADMIN") ||
+            user.roles.includes("MANAGER")) && (
+            <button onClick={handleDownload}>Download regras</button>
+          )}
+      </div>
+
       {subscriptions.length > 0 && (
         <div className="subscription-details">
-          {subscriptions.map((subscription, index) => (
-            <div key={index}>
+          {subscriptions.map((subscription) => (
+            <div key={subscription.id}>
               <form>
                 <h3>{subscription.name}</h3>
                 <p>{"Descrição: " + subscription.description}</p>
-                <p>{"ID da inscrição: " + subscription.id}</p>
-                <p>{"Categoria: " + subscription.category_id}</p>
-                <p>{"Horário: " + new Date(subscription.time).toLocaleString()}</p>
-                <p>{"Staff: " + (subscription.staff && Array.isArray(subscription.staff) ? subscription.staff.join(", ") : "N/A")}</p>
+                <p>{"ID da inscrição" + subscription.id}</p>
+                <p>{"Categories:" + subscription.category_id}</p>
+                <p>{"Horario: " + subscription.time}</p>
+                <p>
+                  {"Staff: " + Array.isArray(subscription.staff)
+                    ? subscription.staff.join(", ")
+                    : ""}
+                </p>
               </form>
             </div>
           ))}

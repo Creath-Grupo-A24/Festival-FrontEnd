@@ -2,7 +2,6 @@ import "./App.css";
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 // Components
-import CompanyInfo from "./userArea/company/info/company.info";
 import Home from "./app/home/home.page";
 import FestivalDetails from "./components/festivalDetails";
 import Subscription from "./components/eventSub";
@@ -92,20 +91,11 @@ function App() {
             <Route path="invite" element={<InviteComponent />} />
           </Route>
           <Route
-            path="/company"
-            element={<CompanyInfo company={company} user={user} />}
-          >
-            <Route
-              path="create"
-              element={
-                <CreateCompany
-                  user={user}
-                  setUser={setUser}
-                  company={company}
-                />
-              }
-            />
-          </Route>
+            path="/companycreate"
+            element={
+              <CreateCompany user={user} setUser={setUser} company={company} />
+            }
+          />
           <Route path="uprules" element={<UploadForm />} />
         </Routes>
       </main>

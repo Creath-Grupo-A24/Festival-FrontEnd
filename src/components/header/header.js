@@ -23,7 +23,7 @@ function Header({ existsUser, setExistsUser, setUser, user, setCompany }) {
             Profile
           </Link>
           {user && (
-            <Link className="nav-link" to="/company">
+            <Link className="nav-link" to="/companycreate">
               Company
             </Link>
           )}

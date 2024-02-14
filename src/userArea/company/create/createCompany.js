@@ -51,7 +51,6 @@ const CreateCompany = ({ user, setUser, company }) => {
             name="company-name"
             placeholder="Company Name"
             autoComplete="Company Name"
-            required
           />
           <i className="bx bxs-user"></i>
         </div>
