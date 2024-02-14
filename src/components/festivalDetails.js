@@ -148,11 +148,11 @@ const FestivalDetails = () => {
           Inscrever no Festival
         </button>
         <button onClick={fetchSubscriptions}>Ver inscrições</button>
-        {user && user.roles.includes("ADMIN") && (
+        {user && user.roles && user.roles.includes("ADMIN") && (
           <button onClick={handleShowUploadForm}>Subir regras</button>
         )}
         {showUploadForm && <UploadForm id={id} />}
-        {user &&
+        {user && user.roles &&
           (user.roles.includes("ADMIN") ||
             user.roles.includes("MANAGER")) && (
             <button onClick={handleDownload}>Download regras</button>

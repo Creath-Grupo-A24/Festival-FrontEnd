@@ -1,20 +1,124 @@
-.createEvent form {
+.create_event-form-area {
+    background: transparent;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 30px 40px;
+    width: 600px;
+    margin: 40px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: white;
+    font-family: "Arial", sans-serif;
+}
+
+.create_event-form-group {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 60px;
+    margin-bottom: 25px;
+}
+
+.create_event-form-area {
     display: flex;
     flex-direction: column;
 }
 
-.createEvent form input, textarea{
-    background-color: #4f4c4c;
-}
-
-.createEvent form .categoriesSelection {
+.create_event-form-group label {
+    flex: 1;
     display: flex;
-    flex-direction: column; 
-    margin-top:10px ;
+    align-items: center;
+    justify-content: flex-start;
 }
 
-.createEvent form .categoriesSelection div label{
-    display: inline-flex;
-    margin-right: 170px;
+.create_event-form-group input {
+    width: 325px;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 20px 20px 20px;
 }
 
+.create_event-form-group textarea {
+    width: 325px;
+}
+
+.create_event-form-group select {
+    width: 325px;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 20px 20px 20px;
+}
+
+.create_event-form-group select option {
+    background: #333;
+    color: #fff;
+}
+
+.create_event-form-group input::placeholder {
+    color: #fff;
+    font-size: 16px;
+}
+
+.create_event-form-group input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.create_event-form-group input:-webkit-autofill,
+.create_event-form-group input:-webkit-autofill:hover,
+.create_event-form-group input:-webkit-autofill:focus,
+.create_event-form-group input:-webkit-autofill:active {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #ffffff;
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20px 20px #23232329;
+}
+
+.create_event-form-area button.criar {
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.create_event-form-area button.criar:hover {
+    background: #cecece;
+    color: black;
+}
+
+.categoriesSelection {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.categoriesSelection label {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.categoriesSelection input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}

@@ -1,26 +1,30 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./createCompany.css";
-import { createCompany } from "../../areaService";
+import { createCompany, getCompany } from "../../areaService";
 import { AuthServiceFactory } from "../../../services/auth.service";
 import { Helmet } from "react-helmet";
 
-const CreateCompany = ({ user, setUser, company }) => {
+const CreateCompany = ({ user, setUser, company, setCompany }) => {
   const navigate = useNavigate();
-  const [companyName, setCompanyName] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const formData = new FormData(event.target);
+    const companyname = Object.fromEntries(formData.entries());
+    console.log(companyname)
     const companyData = {
       owner_id: user.id,
-      name: companyName,
+      name: companyname.companyName,
     };
     try {
       await createCompany(companyData);
       console.log("Companhia criada com sucesso", companyData);
       const fetchUser = async () => {
         const user = await AuthServiceFactory.create().getUser();
+        const company = await getCompany(companyname.companyName)
         setUser(user);
+        setCompany(company)
       };
       fetchUser();
     } catch (error) {
@@ -48,7 +52,7 @@ const CreateCompany = ({ user, setUser, company }) => {
         <div className="company-form-group">
           <input
             type="text"
-            name="company-name"
+            name="companyName"
             placeholder="Company Name"
             autoComplete="Company Name"
           />

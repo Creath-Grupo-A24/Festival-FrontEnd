@@ -19,6 +19,7 @@ import Profile from "./app/profile/profile.page";
 import { AuthServiceFactory } from "./services/auth.service";
 import { getCompany } from "./userArea/areaService";
 import InviteComponent from "./userArea/inviteComponent";
+import ViewCompany from "./userArea/company/view/ViewCompany";
 
 function App() {
   const [existsUser, setExistsUser] = useState(false);
@@ -79,23 +80,22 @@ function App() {
           />
           <Route path="/festival/:id" element={<FestivalDetails />} />
           <Route path="/inscricao/:id" element={<Subscription />} />
-          <Route path="/create" element={<EventCreate />} />
+          <Route path="/event/create" element={<EventCreate />} />
           <Route path="/inscricao/:id" element={<Subscription />} />
           <Route
             path="/profile"
             element={<Profile user={user} company={company} />}
           >
-            <Route path="create" element={<EventCreate />} />
             <Route path="subscriptionlist" element={<SubscriptionArea />} />
             <Route path="details" element={<Details />} />
             <Route path="invite" element={<InviteComponent />} />
           </Route>
           <Route
-            path="/companycreate"
-            element={
-              <CreateCompany user={user} setUser={setUser} company={company} />
-            }
-          />
+            path="/company"
+            element={<ViewCompany user={user} company={company} />}
+          >
+          </Route>
+          <Route path="/company/create" element={<CreateCompany user={user} setUser={setUser} company={company} setCompany={setCompany} />} />
           <Route path="uprules" element={<UploadForm />} />
         </Routes>
       </main>

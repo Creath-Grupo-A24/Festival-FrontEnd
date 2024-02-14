@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './eventCreate.css';
-import { EventServiceFactory } from '../services/event.service'; 
+import { EventServiceFactory } from '../services/event.service';
 import { useNavigate } from "react-router-dom";
 
 const CreateEvent = () => {
@@ -9,7 +9,7 @@ const CreateEvent = () => {
     const [description, setDescription] = useState("");
     const [place, setPlace] = useState("");
     const [time, setTime] = useState("");
-    const [categories, setCategories] = useState([]); 
+    const [categories, setCategories] = useState([]);
     const [selectedCategories, setSelectedCategories] = useState([]);
 
     const eventService = EventServiceFactory.create();
@@ -36,7 +36,7 @@ const CreateEvent = () => {
             .map(([key]) => parseInt(key));
 
         const isoDate = time ? new Date(time).toISOString() : '';
-        
+
         const eventData = {
             name,
             description,
@@ -63,19 +63,49 @@ const CreateEvent = () => {
     };
 
     return (
-        <div className="createEvent">
+        <div className="create_event-form-area">
             <form onSubmit={handleSubmit}>
-            <label>Name:</label>
-                <input type="text" value={name} onChange={(e) => setName(e.target.value)} required/>
-                
-                <label>Descrição:</label>
-                <textarea value={description} onChange={(e) => setDescription(e.target.value)} required/>
-                
-                <label>Local:</label>
-                <input type="text" value={place} onChange={(e) => setPlace(e.target.value)} required/>
-                
-                <label>Data:</label>
-                <input type="date" value={time} onChange={(e) => setTime(e.target.value)} required/>
+                <div className='create_event-form-group'>
+                    <label>Nome:</label>
+                    <input
+                        name='Nome'
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className='create_event-form-group'>
+                    <label>Descrição:</label>
+                    <textarea
+                        name='Descrição'
+                        type="text"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className='create_event-form-group'>
+                    <label>Local:</label>
+                    <input
+                        name='Local'
+                        type="text"
+                        value={place}
+                        onChange={(e) => setPlace(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className='create_event-form-group'>
+                    <label>Data:</label>
+                    <input
+                        name='Nome'
+                        type="date"
+                        value={time}
+                        onChange={(e) => setTime(e.target.value)}
+                        required
+                    />
+                </div>
+
                 <div className="categoriesSelection">
                     <label>Categorias:</label>
                     {categories.map((category) => (
@@ -92,7 +122,7 @@ const CreateEvent = () => {
                         </div>
                     ))}
                 </div>
-                <button type="submit">Criar Evento</button>
+                <button type="submit" className="criar">Criar Evento</button>
             </form>
         </div>
     );

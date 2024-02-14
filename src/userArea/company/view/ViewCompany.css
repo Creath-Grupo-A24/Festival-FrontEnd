@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.view-company{
+    color: #f2f2f2;
+    text-align: left;
+    padding-top: 70px;
+    padding-left: 90px;
+}
+
+.user-catalog {
+    margin: 20px;
+}
+
+.user {
+    cursor: pointer;
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+}
+
+.details {
+    display: none;
+    padding-left: 20px;
+}
+
+.arrow {
+    float: right;
+}
+
+.users-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+    margin: 100px auto 100px auto;
+    max-width: 90%;
+}
+
+.user-item {
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transition: 0.5s;
+    height: 250px;
+}
+
+.user-item:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+    transform: scale(0.9);
+}
+
+.unique-user-icon{
+    font-size: 2em;
+    color: black;
+}

@@ -104,6 +104,24 @@ export class AuthService {
     }
   }
 
+  async getUsersByCompany(company_id) {
+    try {
+      const response = await fetch(`${this.baseApiUrl}/company/${company_id}`, {
+        method: "GET",
+        Authorization: `Bearer ${Cookies.get("token")}`,
+      });
+
+      if (response.status === 401 || response.status === 404) {
+        return { error: "Usuários não encontrados" };
+      }
+
+      let user = await response.json();
+      return user;
+    } catch (error) {
+      return { error: error }
+    }
+  }
+
   async logout() {
     Cookies.remove("token");
   }
