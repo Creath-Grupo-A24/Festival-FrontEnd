@@ -36,12 +36,11 @@ export class AuthService {
     email,
     password,
     name,
-    birth_date,
+    birthDate,
     role_id,
     cpf,
     phone,
   }) {
-    console.log(username, email, password, name, birth_date, role_id, cpf, phone)
     if (!validarCPF(cpf)) {
       return { error: "CPF inválido!" };
     }
@@ -60,7 +59,7 @@ export class AuthService {
         email,
         password,
         name,
-        birth_date,
+        birthDate,
         role_id,
         cpf,
         phone,

@@ -12,12 +12,6 @@
   font-family: "Arial", sans-serif;
 }
 
-@media (max-width: 768px) {
-  .register-form-area {
-    width: 90%;
-  }
-}
-
 .register-form-group {
   display: flex;
   align-items: center;

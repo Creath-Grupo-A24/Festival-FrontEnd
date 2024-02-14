@@ -1,128 +1,115 @@
 .festival-details {
-  font-family: "Arial", sans-serif;
-  max-width: 1200px;
-  width: 100%;
-  height: 100%;
-  margin: auto;
-  padding: 20px;
-  color: #333;
-}
-
-.festival-details form {
-  display: inline-grid;
-  flex-direction: column;
-  background-color: transparent;
-  border-radius: 10px;
-  padding: 40px;
-  width: 350px;
-  margin: 100px auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  color: white;
-  font-family: "Arial", sans-serif;
-  width: 90%;
-  margin-bottom: 20px;
-}
-
-.festival-details form p {
-  color: black;
-}
-
-.festival-details h1 {
-  font-size: 2em;
-  margin-left: -100px;
-  color: #f1f1f1;
-  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-  margin-bottom: 0.5em;
-  text-transform: uppercase;
-}
-
-@media (max-width: 768px) {
-  .festival-details h1 {
-    margin-left: 0;
-  }
-}
-
-.festival-details p {
-  font-size: 1em;
-  line-height: 1.6;
-  margin-bottom: 1em;
-  color: #fff;
-  text-transform: capitalize;
-  display: flex;
-}
-
-.festival-details .details {
-  font-size: 1.2em;
-  margin-bottom: 1em;
-}
-
-.festival-details ul {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 1em;
-}
-
-.festival-details li {
-  background-color: #2e2e2e;
-  color: #fff;
-  display: inline-block;
-  padding: 0.5em 1em;
-  margin: 0.5em;
-  border-radius: 5px;
-}
-
-@media (max-width: 768px) {
-  .festival-details h1 {
-    font-size: 2em;
+    font-family: 'Arial', sans-serif; 
+    max-width: 1200px; 
+    margin: auto;
+    padding: 20px;
+    color: #333; 
   }
 
-  .festival-details .btn {
+  .festival-details form{
+    display: inline-grid;
+    flex-direction: column;
+    background-color: #3282F6;
+    border-radius: 10px;
+    padding: 40px;
+    width: 350px;
+    margin: 100px auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    color: white;
+    font-family: 'Arial', sans-serif;
+    width: 90%;
+    margin-bottom: 20px;
+  }
+
+  .festival-details form p{
+    color: black;
+  }
+
+  .festival-details h1 {
+    font-size: 4em; 
+    color: #FF00FF;
+    margin-bottom: 0.5em;
+    text-transform: uppercase; 
+    display: flex;
+  }
+
+  .festival-details p {
+    font-size: 1em;
+    line-height: 1.6; 
+    margin-bottom: 1em;
+    color: #fff;
+    text-transform: capitalize;
+    display: flex;
+  }
+
+  .festival-details .details {
+    font-size: 1.2em;
+    margin-bottom: 1em;
+  }
+  
+
+  .festival-details ul {
+    list-style: none; 
+    padding: 0; 
+    margin-bottom: 1em;
+  }
+  
+  .festival-details li {
+    background-color: #EFEFEF; 
+    display: inline-block; 
+    padding: 0.5em 1em; 
+    margin: 0.5em;
+    border-radius: 5px;
+  }
+  
+  .festival-details button {
+    background-color: #1045e4;
+    color: #ff83d5;
+    border-radius: 0;
     width: 100%;
-    text-align: center;
+    letter-spacing: 10px;
+    font-size: 23px;
+    line-height: 23px;
+    font-weight: 500;
+    font-style: italic;
+    transition: all .5s;
+    text-transform: uppercase;
+    padding: 25px 0;
   }
-}
 
-.month {
-  font-size: 15px;
-  font-weight: normal;
-  display: block;
-}
-.date {
-  color: #dadada;
-  font-size: 1.5em;
-  margin-right: 10vw;
-  width: 50px;
-  border-right: 1px solid #fff;
-}
+  .subscription-details div form{
+    background: transparent;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 30px 40px;
+    width: 400px;
+    margin: 100px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: white;
+    font-family: "Arial", sans-serif;
+    display: flex;
+    flex-direction: column;
+  }
 
-.head {
-  display: flex;
-  align-items: center;
-}
-
-.festival-details button {
-  color: white;
-  background-color: #222;
-  font-weight: 500;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  line-height: 2rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-top: 0.7rem;
-  padding-bottom: 0.7rem;
-  cursor: pointer;
-  text-align: center;
-  margin-right: 0.5rem;
-  display: inline-flex;
-  align-items: center;
-  border: none;
-}
-.festival-details button:hover {
-  background-color: #333;
-}
-
-.buttons {
-  display: flex;
-  flex-wrap: wrap;
-}
+  .subscription-details div form h3{
+    color: #fff;
+    text-transform: uppercase;
+  }
+  
+  .subscription-details div form p{
+    color: #fff;
+  }
+  @media (max-width: 768px) {
+    .festival-details h1 {
+      font-size: 2em;
+    }
+  
+    .festival-details .btn {
+      width: 100%; 
+      text-align: center; 
+    }
+  }
+  

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './eventCreate.css';
-import { createEvent, getCategories } from './festivalService';
+import { EventServiceFactory } from '../services/event.service'; 
 import { useNavigate } from "react-router-dom";
 
 const CreateEvent = () => {
@@ -12,9 +12,11 @@ const CreateEvent = () => {
     const [categories, setCategories] = useState([]); 
     const [selectedCategories, setSelectedCategories] = useState([]);
 
+    const eventService = EventServiceFactory.create();
+
     useEffect(() => {
         const fetchCategories = async () => {
-            const fetchedCategories = await getCategories();
+            const fetchedCategories = await eventService.getCategories();
             setCategories(fetchedCategories);
             const initialSelected = fetchedCategories.reduce((acc, category) => {
                 acc[category.id] = false;
@@ -33,8 +35,7 @@ const CreateEvent = () => {
             .filter(([key, value]) => value)
             .map(([key]) => parseInt(key));
 
-        const isoDate = time ? new Date(time).toISOString():'';
-          
+        const isoDate = time ? new Date(time).toISOString() : '';
         
         const eventData = {
             name,
@@ -45,7 +46,7 @@ const CreateEvent = () => {
         };
 
         try {
-            await createEvent(eventData);
+            await eventService.createEvent(eventData);
             alert("Evento criado com sucesso!");
             navigate('/');
         } catch (error) {
@@ -75,7 +76,7 @@ const CreateEvent = () => {
                 
                 <label>Data:</label>
                 <input type="date" value={time} onChange={(e) => setTime(e.target.value)} required/>
-                <div>
+                <div className="categoriesSelection">
                     <label>Categorias:</label>
                     {categories.map((category) => (
                         <div key={category.id}>

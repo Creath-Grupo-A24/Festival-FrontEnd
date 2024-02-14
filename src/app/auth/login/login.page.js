@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
-import { AuthServiceFactory } from "../../../services/auth.service";
 import { loginHandler } from "../../../handlers/auth.handler";
 import { Helmet } from "react-helmet";
 import Cookies from "js-cookie";
 
-const LoginPage = ({ setExistsUser, setUser }) => {
+const LoginPage = ({ setExistsUser }) => {
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -18,14 +17,10 @@ const LoginPage = ({ setExistsUser, setUser }) => {
     if (error) navigate("/signin");
     else {
       setExistsUser(true);
-      const fetchUser = async () => {
-        const user = await AuthServiceFactory.create().getUser();
-        setUser(user);
-      };
-      fetchUser();
       navigate("/");
     }
   };
+
 
   return (
     <div className="login-form-area">

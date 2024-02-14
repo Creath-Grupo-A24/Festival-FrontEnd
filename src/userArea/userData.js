@@ -1,72 +1,62 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import './userData.css';
-import {listRoles} from '../usuarios/userService';
-import {getCompany} from './areaService';
+import { ECompanyServiceFactory } from '../services/company.service';
+import { AuthServiceFactory } from '../services/auth.service';
+
+const companyService = ECompanyServiceFactory.create();
+const userService = AuthServiceFactory.create();
 
 const UserData = () => {
-  const user = localStorage.getItem('user');
-  const [roles, setRoles] = useState([]);
-  const userString = user ? JSON.parse(user) : {};
-  const [companyData, setCompanyData] = useState(null);
+  const [user, setUser] = useState(null);
+  const [company, setCompany] = useState(null);
 
   useEffect(() => {
-    const fetchRoles = async () => {
-        try {
-            const fetchedRoles = await listRoles();
-            setRoles(fetchedRoles); 
-        } catch (error) {
-            console.error('Erro ao buscar roles:', error);
+    async function fetchUserData() {
+      try {
+        const userObject = await userService.getUser();
+        setUser(userObject); 
+
+        if (userObject.company_id) {
+          const companyObject = await companyService.getCompany(userObject.company_id);
+          setCompany(companyObject);
         }
-    };
-
-    fetchRoles();
-
-    if (userString.company_id) {
-      const fetchCompanyData = async () => {
-        try {
-          const fetchedCompanyData = await getCompany(userString.company_id);
-          setCompanyData(fetchedCompanyData);
-        } catch (error) {
-          console.error('Erro ao buscar dados da companhia:', error);
-        }
-      };
-
-      fetchCompanyData();
+      } catch (error) {
+        console.error(error);
+      }
     }
-  }, [userString.company_id]);
+    fetchUserData();
+  }, []); 
 
-  const userRolesDescriptions = userString.roles.map(roleId => {
-    const role = roles.find(r => r.type === userString.roles[0]);
-    return role ? `${userString.roles[0]} - ${role.description}` : 'Role não encontrada';
-  }).join(', ');
-  
+  console.log(company);
   return (
     <div>
-        <form>
+       { user && (<form>
+        
             <label>Username:</label>
-            <input value={userString.username} readOnly></input>
+            <input value={user.username[0].toUpperCase() + user.username.slice(1)} readOnly></input>
             <label>Email:</label>
-            <input value={userString.email} readOnly></input>
+            <input value={user.email} readOnly></input>
             <label>Nome:</label>
-            <input value={userString.name} readOnly></input>
+            <input value={user.name[0].toUpperCase() + user.name.slice(1)} readOnly></input>
             <label>Roles:</label>
-            <input value={userRolesDescriptions} readOnly></input>
+            <input value={user.roles[0]} readOnly></input>
             <label>CPF:</label>
-            <input value={userString.cpf} readOnly></input>
+            <input value={user.cpf} readOnly></input>
             <label>Telefone:</label>
-            <input value={userString.phone} readOnly></input>
+            <input value={user.phone} readOnly></input>
             <label>Data de nascimento:</label>
-            <input value={userString.birth_date} readOnly></input>
-            {companyData && (
+            <input value={user.birth_date} readOnly></input>
+            {company && (
               <div>
                 <h2>Dados da Companhia</h2>
-                <p>Nome: {companyData.name}</p>
-                <p>ID: {companyData.id}</p>
+                <p>Nome: {company.name}</p>
+                <p>ID: {company .id}</p>
               </div>
             )}
         </form>
-        
+        )}
     </div>
   );
-}
+};
+
 export default UserData;

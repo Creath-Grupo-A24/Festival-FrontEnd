@@ -1,15 +1,20 @@
-.createEvent form{
+.createEvent form {
     display: flex;
-    flex-direction: column;    background-color: #3282F6;
-    border-radius: 10px;
-    padding: 40px;
-    width: 350px;
-    margin: 100px auto;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    color: white;
-    font-family: 'Arial', sans-serif;
+    flex-direction: column;
 }
 
-.createEvent label{
-    display: flex;
+.createEvent form input, textarea{
+    background-color: #4f4c4c;
 }
+
+.createEvent form .categoriesSelection {
+    display: flex;
+    flex-direction: column; 
+    margin-top:10px ;
+}
+
+.createEvent form .categoriesSelection div label{
+    display: inline-flex;
+    margin-right: 170px;
+}
+

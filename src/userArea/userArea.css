@@ -1,6 +1,35 @@
-.box nav{
-    background-color: cyan;
+.box nav {
+    color: rgb(50, 49, 48);
+    background: rgba(186, 182, 182, 0.295);
+    font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-weight: 400;
+    font-size: 0.875rem;
+    -webkit-font-smoothing: antialiased;
 }
-.box a{
+
+.box a {
     margin-left: 100px;
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: #fff;
+    font-weight: 600;
+    position: relative; 
+    transition: color 0.5s; 
+}
+
+.box a::after {
+    content: "";
+    height: 2px;
+    width: 0;
+    background: rgb(170, 6, 6);
+    display: block;
+    margin-top: 5px; 
+    transition: width 0.5s;
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+}
+
+.box a:hover::after {
+    width: 100%;
 }
