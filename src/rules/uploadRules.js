@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { uploadRules } from '../components/festivalService';
+import { EventServiceFactory } from '../services/event.service';
 
 const UploadForm = ({ id }) => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -14,8 +14,11 @@ const UploadForm = ({ id }) => {
       alert('Por favor, selecione um arquivo para fazer upload.');
       return;
     }
+
+    const eventService = EventServiceFactory.create(); 
+
     try {
-      await uploadRules(selectedFile, id); 
+      await eventService.uploadRules(selectedFile, id); 
       alert('Upload realizado com sucesso!');
     } catch (error) {
       alert('Falha no upload do arquivo.');

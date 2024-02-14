@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { FaUserCircle } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import "./dropdown.css";
-import Cookies from "js-cookie";
+import React, { useState } from 'react';
+import { FaUserCircle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import './dropdown.css';
+import Cookies from 'js-cookie';
 
 const UserDropdown = ({ setExistsUser, setUser, setCompany }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,19 +24,11 @@ const UserDropdown = ({ setExistsUser, setUser, setCompany }) => {
 
   return (
     <div className="user-dropdown">
-      <div
-        className="user-icon"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+      <div className="user-icon" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <FaUserCircle />
       </div>
       {isOpen && (
-        <div
-          className="dropdown-menu"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
+        <div className="dropdown-menu" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <ul>
             <li>
               <Link className="link" to="/profile">

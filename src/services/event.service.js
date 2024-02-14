@@ -19,8 +19,15 @@ export class EventService {
         if (response.status !== 201) {
             throw new Error('Erro ao criar evento');
         }
-
-        return response.headers.get('Location').split('/').pop();
+        
+        const locationHeader = response.headers.get('Location');
+        if (locationHeader) {
+            alert('Evento criado');
+            return locationHeader.split('/').pop();
+        } else {
+            throw new Error('Evento criado, mas o cabeçalho "Location" não foi retornado pela API.');
+            alert('Evento criado, mas o cabeçalho "Location" não foi retornado pela API.');
+        }
     }
 
     async uploadRules(file, id) {
@@ -83,6 +90,16 @@ export class EventService {
             return response.data;
         } catch (error) {
             console.error('Erro ao chamar getEvents:', error);
+            throw error;
+        }
+    }
+
+    async getCategories(){
+        try {
+            const response = await axios.get(`${this.apiBaseUrl}/categories`);
+            return response.data;
+        } catch (error) {
+            console.error('Erro ao chamar getCategories:', error);
             throw error;
         }
     }

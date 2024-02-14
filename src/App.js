@@ -11,6 +11,14 @@ import CompanyInfo from "./userArea/company/info/company.info";
 import SubscriptionArea from "./userArea/subscriptionsArea";
 import Details from "./userArea/detailsSubs";
 import UploadForm from "./rules/uploadRules";
+import Home from './app/home/home.page';
+import FestivalDetails from './components/festivalDetails';
+import Subscription from './components/eventSub';
+import EventCreate from './components/eventCreate';
+import CreateCompany from './userArea/createCompany';
+import SubscriptionArea from './userArea/subscriptionsArea';
+import Details from './userArea/detailsSubs';
+import UploadForm from './rules/uploadRules';
 import LoginPage from "./app/auth/login/login.page";
 import Header from "./components/header/header";
 import Cookies from "js-cookie";
@@ -19,6 +27,9 @@ import RegisterPage from "./app/auth/register/register.page";
 import Profile from "./app/profile/profile.page";
 import { AuthServiceFactory } from "./services/auth.service";
 import { getCompany } from "./userArea/areaService";
+import Profile from "./userArea/userArea";
+import ProfileData from "./userArea/userData";
+import InviteComponent from "./userArea/inviteComponent";
 
 function App() {
   const [existsUser, setExistsUser] = useState(false);
@@ -41,6 +52,7 @@ function App() {
       setExistsUser(false);
       setUser(null);
     }
+      Cookies.get("token") ? setExistsUser(true) : setExistsUser(false);
   }, []);
 
   return (
@@ -52,6 +64,7 @@ function App() {
         user={user}
         setCompany={setCompany}
       />
+      <Header existsUser={existsUser} setExistsUser={setExistsUser} />
 
       <main className="app-content-container">
         <Routes>
@@ -76,16 +89,21 @@ function App() {
               />
             }
           />
+          <Route path="/signin" element={<LoginPage setExistsUser={setExistsUser} />} />
+          <Route path="/signup" element={<RegisterPage setExistsUser={setExistsUser} />} />
           <Route path="/festival/:id" element={<FestivalDetails />} />
           <Route path="/inscricao/:id" element={<Subscription />} />
           <Route path="/create" element={<EventCreate />} />
+          <Route path='/inscricao/:id' element={<Subscription />} />
           <Route
             path="/profile"
             element={<Profile user={user} company={company} />}
           >
-            <Route path="data" element={<div></div>} />
-            <Route path="subscriptionlist" element={<SubscriptionArea />} />
-            <Route path="details" element={<Details />} />
+            <Route path='create' element={<EventCreate />} />
+            <Route path="data" element={<ProfileData/>} />
+            <Route path='subscriptionlist' element={<SubscriptionArea />} />
+            <Route path='details' element={<Details />} />
+            <Route path='invite' element={<InviteComponent />} />
           </Route>
           <Route path="/company" element={<CompanyInfo company={company} user={user}/>} />
           <Route

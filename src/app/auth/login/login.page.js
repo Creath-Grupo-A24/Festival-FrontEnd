@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
-import { AuthServiceFactory } from "../../../services/auth.service";
 import { loginHandler } from "../../../handlers/auth.handler";
 import { getCompany } from "../../../userArea/areaService";
 import { Helmet } from "react-helmet";
@@ -31,6 +30,7 @@ const LoginPage = ({ setExistsUser, setUser, setCompany }) => {
       navigate("/");
     }
   };
+
 
   return (
     <div className="login-form-area">

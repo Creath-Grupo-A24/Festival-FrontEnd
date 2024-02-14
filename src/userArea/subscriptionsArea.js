@@ -1,29 +1,38 @@
 import React, { useEffect, useState } from "react";
-import { getSubscriptions, getSubscription } from "../components/eventService"; 
 import './subArea.css';
 import { useNavigate } from "react-router-dom";
+import { SubscriptionServiceFactory } from '../services/subscription.service'; 
 
 const SubArea = () => {
     const [subscriptions, setSubscriptions] = useState([]);
     const navigate = useNavigate();
 
+    const subscriptionService = SubscriptionServiceFactory.getInstance('http://localhost:8091/v1/subscription');
+
     useEffect(() => {
         const fetchSubscriptions = async () => {
             try {
-                const response = await getSubscriptions({});
-                setSubscriptions(response.data.items);
+                const params = {
+                    page: 0, 
+                    perPage: 10, 
+                    terms: '', 
+                    sort: 'time', 
+                    direction: 'ASC'
+                };
+                const response = await subscriptionService.getSubscriptions(params);
+                setSubscriptions(response.items); 
             } catch (error) {
                 console.error('Erro ao buscar subscrições:', error);
             }
         };
 
         fetchSubscriptions();
-    }, []);
+    }, [subscriptionService]); 
 
     const handleDetailsClick = async (id) => {
         try {
-            const response = await getSubscription(id);
-            navigate('/userarea/details', { state: { subscriptionDetails: response.data } });
+            const response = await subscriptionService.getSubscription(id);
+            navigate('/profile/details', { state: { subscriptionDetails: response } });
         } catch (error) {
             console.error('Erro ao buscar detalhes da subscrição:', error);
         }

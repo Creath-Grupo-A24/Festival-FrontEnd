@@ -38,37 +38,46 @@ export class SubscriptionService {
         return response.json();
     }
 
-    async getSubscriptions({ page = 0, perPage = 10, terms, sort = 'time', direction = 'ASC' }) {
-        let response = fetch(`${this.apiBaseUrl}/list`, {
+    async getSubscriptions({ page = 0, perPage = 10, terms = '', sort = 'time', direction = 'ASC' }) {
+        const queryParams = new URLSearchParams({
+            page,
+            perPage,
+            terms,
+            sort,
+            direction
+        }).toString();
+    
+        let response = await fetch(`${this.apiBaseUrl}/list?${queryParams}`, {
             headers: {
                 'Content-Type': 'application/json',
             },
             method: 'GET',
-            params: { page, perPage, terms, sort, direction }
         });
-
+    
         if (response.status !== 200) {
             throw new Error('Erro ao buscar inscrições');
         }
-
+    
         return response.json();
     }
+    
 
-    async getSubscriptionByEventId(eventId, { page = 0, perPage = 10, terms, sort = 'time', direction = 'ASC' }) {
-        let response = fetch(`${this.apiBaseUrl}/event/${eventId}`, {
+    async getSubscriptionByEventId(eventId, { page = 0, perPage = 10, terms = '', sort = 'time', direction = 'ASC' } = {}) {
+        const queryParams = new URLSearchParams({ page, perPage, terms, sort, direction }).toString();
+        let response = await fetch(`${this.apiBaseUrl}/event/${eventId}?${queryParams}`, {
             headers: {
                 'Content-Type': 'application/json',
             },
-            method: 'GET',
-            params: { page, perPage, terms, sort, direction }
+            method: 'GET'
         });
-
+    
         if (response.status !== 200) {
             throw new Error('Erro ao buscar inscrições');
         }
-
+    
         return response.json();
     }
+    
 }
 
 export const SubscriptionServiceFactory = (function () {

@@ -30,13 +30,13 @@
   margin: 0;
 }
 
-.dropdown-menu li:not(.username){
+.dropdown-menu li {
   width: 100%;
   display: block;
   cursor: pointer;
 }
 
-.dropdown-menu li:hover:not(.username) {
+.dropdown-menu li:hover {
   background-color: #f0f0f0;
 }
 

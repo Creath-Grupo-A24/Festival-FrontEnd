@@ -7,7 +7,11 @@ function Header({ existsUser, setExistsUser, setUser, user, setCompany }) {
     <header className="app-header-container">
       <div className="app-header-logo">
         <Link to={"/"}>
-          <img src="/logo.png" className="app-logo" alt="logo" />
+          <img
+            src="/logo.png"
+            className="app-logo"
+            alt="logo"
+          />
         </Link>
       </div>
       <nav className="app-header-content">
@@ -34,7 +38,7 @@ function Header({ existsUser, setExistsUser, setUser, user, setCompany }) {
         />
       )}
     </header>
-  );
+  )
 }
 
 export default Header;

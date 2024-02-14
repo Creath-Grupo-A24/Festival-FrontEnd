@@ -1,25 +1,63 @@
 .eventSub{
-    display: flex;
-    flex-direction: column;    background-color: #3282F6;
+    background: transparent;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
-    padding: 40px;
-    width: 350px;
+    padding: 30px 40px;
+    width: 400px;
     margin: 100px auto;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: white;
-    font-family: 'Arial', sans-serif;
+    font-family: "Arial", sans-serif;
+    display: flex;
+    flex-direction: column;
 }
 
 .eventSub input, textarea{
-    background-color: #f3f3f3;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 45px 20px 20px;
 }
 
 .eventSub label{
     display: flex;
-    color: blue;
+    color: #fff;
+}
+
+.eventSub button {
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+    transition: 0.3s;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.eventSub select {
+    font-family: "MWF-MDL2";
+    content: "";
+    font-size: 18px;
+    display: inline-block;
+    color: currentColor;
+    font-weight: 90;
+    padding-top: 22px;
+    padding-right: 140px;
+    margin-bottom: 10px;
 }
