@@ -1,0 +1,98 @@
+.company-form-area {
+  background: transparent;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 30px 40px;
+  width: 400px;
+  margin: 100px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: white;
+  font-family: "Arial", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.company-form-group {
+  position: relative;
+  height: 8vh;
+  margin-bottom: 50px;
+}
+
+.company-form-group input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 40px;
+  font-size: 16px;
+  color: #fff;
+  padding: 20px 45px 20px 20px;
+}
+
+.company-form-group input::placeholder {
+  color: #fff;
+  font-size: 16px;
+}
+
+.company-form-group input:-webkit-autofill,
+.company-form-group input:-webkit-autofill:hover,
+.company-form-group input:-webkit-autofill:focus,
+.company-form-group input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #ffffff;
+  transition: background-color 5000s ease-in-out 0s;
+  box-shadow: inset 0 0 20px 20px #23232329;
+}
+
+.company-form-group i {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+
+.company-form-area .register-link {
+  font-size: 14.5px;
+  text-align: center;
+  margin-top: 20px;
+  margin: 20px 0 15px;
+}
+
+.company-form-area a {
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+  display: block;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.company-form-area button.btn {
+  width: 100%;
+  height: 45px;
+  background: #fff;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.company-form-area button.btn:hover {
+  background: #cecece;
+  color: black;
+}
+
+
+.title{
+    padding-bottom: 20px;
+}

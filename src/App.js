@@ -6,7 +6,8 @@ import Home from "./app/home/home.page";
 import FestivalDetails from "./components/festivalDetails";
 import Subscription from "./components/eventSub";
 import EventCreate from "./components/eventCreate";
-import CreateCompany from "./userArea/createCompany";
+import CreateCompany from "./userArea/company/create/createCompany";
+import CompanyInfo from "./userArea/company/info/company.info";
 import SubscriptionArea from "./userArea/subscriptionsArea";
 import Details from "./userArea/detailsSubs";
 import UploadForm from "./rules/uploadRules";
@@ -17,10 +18,12 @@ import Footer from "./components/footer/footer";
 import RegisterPage from "./app/auth/register/register.page";
 import Profile from "./app/profile/profile.page";
 import { AuthServiceFactory } from "./services/auth.service";
+import { getCompany } from "./userArea/areaService";
 
 function App() {
   const [existsUser, setExistsUser] = useState(false);
   const [user, setUser] = useState(null);
+  const [company, setCompany] = useState(null);
 
   useEffect(() => {
     if (Cookies.get("token")) {
@@ -28,6 +31,10 @@ function App() {
       const fetchUser = async () => {
         const user = await AuthServiceFactory.create().getUser();
         setUser(user);
+        if (user.company_id != null) {
+          const company = await getCompany(user.company_id);
+          setCompany(company);
+        }
       };
       fetchUser();
     } else {
@@ -41,7 +48,9 @@ function App() {
       <Header
         existsUser={existsUser}
         setExistsUser={setExistsUser}
+        setUser={setUser}
         user={user}
+        setCompany={setCompany}
       />
 
       <main className="app-content-container">
@@ -50,24 +59,41 @@ function App() {
           <Route
             path="/signin"
             element={
-              <LoginPage setExistsUser={setExistsUser} setUser={setUser} />
+              <LoginPage
+                setExistsUser={setExistsUser}
+                setUser={setUser}
+                setCompany={setCompany}
+              />
             }
           />
           <Route
             path="/signup"
             element={
-              <RegisterPage setExistsUser={setExistsUser} setUser={setUser} />
+              <RegisterPage
+                setExistsUser={setExistsUser}
+                setUser={setUser}
+                setCompany={setCompany}
+              />
             }
           />
           <Route path="/festival/:id" element={<FestivalDetails />} />
           <Route path="/inscricao/:id" element={<Subscription />} />
           <Route path="/create" element={<EventCreate />} />
-          <Route path="/profile" element={<Profile user={user} />}>
+          <Route
+            path="/profile"
+            element={<Profile user={user} company={company} />}
+          >
             <Route path="data" element={<div></div>} />
-            <Route path="createcompany" element={<CreateCompany />} />
             <Route path="subscriptionlist" element={<SubscriptionArea />} />
             <Route path="details" element={<Details />} />
           </Route>
+          <Route path="/company" element={<CompanyInfo company={company} user={user}/>} />
+          <Route
+            path="/createcompany"
+            element={
+              <CreateCompany user={user} setUser={setUser} company={company} />
+            }
+          />
           <Route path="uprules" element={<UploadForm />} />
         </Routes>
       </main>

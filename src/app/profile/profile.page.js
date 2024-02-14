@@ -3,7 +3,7 @@ import moment from "moment";
 import { FaUserCircle } from "react-icons/fa";
 import "./profile.css";
 
-const Profile = ({ user }) => {
+const Profile = ({ user, company }) => {
   return (
     <div className="container">
       <div className="rows">
@@ -30,7 +30,7 @@ const Profile = ({ user }) => {
             </p>
             <p className="info">
               Companhia:{" "}
-              {user.company ? user.company : "Não associado a companhia"}
+              {company ? company.name : "Não associado a companhia"}
             </p>
           </div>
         </div>

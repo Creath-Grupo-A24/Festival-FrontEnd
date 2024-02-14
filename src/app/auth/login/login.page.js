@@ -3,10 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 import { AuthServiceFactory } from "../../../services/auth.service";
 import { loginHandler } from "../../../handlers/auth.handler";
+import { getCompany } from "../../../userArea/areaService";
 import { Helmet } from "react-helmet";
 import Cookies from "js-cookie";
 
-const LoginPage = ({ setExistsUser, setUser }) => {
+const LoginPage = ({ setExistsUser, setUser, setCompany }) => {
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -21,6 +22,10 @@ const LoginPage = ({ setExistsUser, setUser }) => {
       const fetchUser = async () => {
         const user = await AuthServiceFactory.create().getUser();
         setUser(user);
+        if (user.company_id != null) {
+          const company = await getCompany(user.company_id);
+          setCompany(company);
+        }
       };
       fetchUser();
       navigate("/");

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./dropdown.css";
 import Cookies from "js-cookie";
 
-const UserDropdown = ({ setExistsUser, user }) => {
+const UserDropdown = ({ setExistsUser, setUser, setCompany }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleMouseEnter = () => {
@@ -17,6 +17,8 @@ const UserDropdown = ({ setExistsUser, user }) => {
 
   const handleLogout = () => {
     setExistsUser(false);
+    setUser(null);
+    setCompany(null);
     Cookies.remove("token");
   };
 
@@ -36,9 +38,6 @@ const UserDropdown = ({ setExistsUser, user }) => {
           onMouseLeave={handleMouseLeave}
         >
           <ul>
-            <li className="username">
-              {user.username}
-            </li>
             <li>
               <Link className="link" to="/profile">
                 Perfil

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import UserDropdown from "./user-dropdown";
 import "./header.css";
 
-function Header({ existsUser, setExistsUser, user }) {
+function Header({ existsUser, setExistsUser, setUser, user, setCompany }) {
   return (
     <header className="app-header-container">
       <div className="app-header-logo">
@@ -16,12 +16,23 @@ function Header({ existsUser, setExistsUser, user }) {
             Home
           </Link>
           <Link className="nav-link" to={existsUser ? "/profile" : "/signin"}>
-            Área usuário
+            Profile
           </Link>
+          {user && (
+            <Link className="nav-link" to="/company">
+              Company
+            </Link>
+          )}
         </div>
       </nav>
 
-      {existsUser && <UserDropdown setExistsUser={setExistsUser} user={user} />}
+      {existsUser && (
+        <UserDropdown
+          setExistsUser={setExistsUser}
+          setUser={setUser}
+          setCompany={setCompany}
+        />
+      )}
     </header>
   );
 }
