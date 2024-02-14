@@ -1,3 +1,4 @@
+import moment from "moment";
 import { AuthServiceFactory } from "../services/auth.service";
 import { validarCPF, validarNumeroTelefone } from "../utils/validations";
 
@@ -14,8 +15,7 @@ export async function registerHandler(e) {
   const formData = new FormData(e.target);
   const registerData = Object.fromEntries(formData.entries());
   registerData.role_id = parseInt(registerData.role_id);
-  const localDate = registerData.birth_date ? new Date(registerData.birth_date).toISOString() : '';
-  registerData.birth_date = localDate.toString();
+  registerData.birth_date = moment(registerData.birth_date).format('DD/MM/yyyy');
 
   if (!validarCPF(registerData.cpf)) {
     alert('CPF inválido!');

@@ -19,10 +19,11 @@
   font-family: "Protest Strike", sans-serif;
   font-weight: 400;
   font-style: normal;
+  padding-bottom: 20px;
 }
 
 @media (max-width: 768px) {
-  .title {
+  .head-title {
     font-size: 2em;
   }
 }

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 import { loginHandler } from "../../../handlers/auth.handler";
 import { getCompany } from "../../../userArea/areaService";
+import { AuthServiceFactory } from "../../../services/auth.service";
 import { Helmet } from "react-helmet";
 import Cookies from "js-cookie";
 
@@ -30,7 +31,6 @@ const LoginPage = ({ setExistsUser, setUser, setCompany }) => {
       navigate("/");
     }
   };
-
 
   return (
     <div className="login-form-area">

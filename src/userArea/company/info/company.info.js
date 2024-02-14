@@ -20,7 +20,7 @@ const CompanyInfo = ({ company, user }) => {
             A NEVER-BEFORE-SEEN <br /> EXPERIENCE ON <br />
             DANCEHUB!
           </h1>
-          <Link to={"/createcompany"} className="button">
+          <Link to={"company/create"} className="button">
             Create your company!
           </Link>
         </div>
