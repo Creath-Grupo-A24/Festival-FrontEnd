@@ -17,12 +17,7 @@ export class EventService {
         });
 
         if (response.status !== 201) {
-            throw new Error('Erro ao criar evento');
-        }
-
-
-        if (!response.ok) {
-            return { error: `Unexpected HTTP status: ${response.status}` };
+            return { error: 'Erro ao criar evento' };
         }
     }
 
@@ -39,7 +34,7 @@ export class EventService {
         });
 
         if (response.status !== 200) {
-            throw new Error('Erro ao fazer upload do arquivo');
+            return { error: 'Erro ao fazer upload do arquivo' };
         }
     }
 
@@ -52,7 +47,7 @@ export class EventService {
         });
 
         if (response.status !== 200) {
-            throw new Error('Erro ao fazer download do arquivo');
+            return { error: 'Erro ao fazer download do arquivo' };
         }
 
         return response.blob();
@@ -67,8 +62,7 @@ export class EventService {
             });
             return response.data;
         } catch (error) {
-            console.error('Erro ao chamar getEventById:', error);
-            throw error;
+            return { error };
         }
     }
 
@@ -85,8 +79,7 @@ export class EventService {
             });
             return response.data;
         } catch (error) {
-            console.error('Erro ao chamar getEvents:', error);
-            throw error;
+            return { error };
         }
     }
 
@@ -95,8 +88,7 @@ export class EventService {
             const response = await axios.get(`${this.apiBaseUrl}/categories`);
             return response.data;
         } catch (error) {
-            console.error('Erro ao chamar getCategories:', error);
-            throw error;
+            return { error };
         }
     }
 

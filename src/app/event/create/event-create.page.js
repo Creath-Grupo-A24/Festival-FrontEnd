@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import './eventCreate.css';
-import { EventServiceFactory } from '../services/event.service';
+import './event-create.css';
+import { EventServiceFactory } from '../../../services/event.service';
 import { useNavigate } from "react-router-dom";
 
 const CreateEvent = () => {
@@ -26,7 +26,7 @@ const CreateEvent = () => {
         };
 
         fetchCategories();
-    }, []);
+    }, [eventService]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

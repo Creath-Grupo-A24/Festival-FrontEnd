@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./createCompany.css";
 import { createCompany, getCompany } from "../../areaService";
@@ -12,7 +12,6 @@ const CreateCompany = ({ user, setUser, company, setCompany }) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const companyname = Object.fromEntries(formData.entries());
-    console.log(companyname)
     const companyData = {
       owner_id: user.id,
       name: companyname.companyName,

@@ -84,6 +84,7 @@ export class AuthService {
 
   async getUser() {
     try {
+      if (!Cookies.get("token")) return { error: "Usuário não autenticado" };
       const response = await fetch(`${this.baseApiUrl}/token`, {
         method: "GET",
         headers: {

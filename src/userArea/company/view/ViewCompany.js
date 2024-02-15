@@ -5,7 +5,7 @@ import { AuthServiceFactory } from "../../../services/auth.service";
 import ViewUser from "./ViewUser";
 
 const ViewCompany = ({ user, company }) => {
-    const [companyUsers, setCompanyUsers] = useState([]);
+    const [companyUsers, setCompanyUsers] = useState(null);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 

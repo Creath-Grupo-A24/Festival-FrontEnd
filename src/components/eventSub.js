@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
-import { getEventById } from './festivalService';
-import { createSubscription } from './eventService';
 import './eventSub.css';
 import moment from 'moment';
+import { SubscriptionServiceFactory } from "../services/subscription.service";
+import { EventServiceFactory } from "../services/event.service";
 
 const Subscription = () => {
   const user = localStorage.getItem('user');
@@ -24,7 +24,7 @@ const Subscription = () => {
   useEffect(() => {
     const fetchFestivalDetails = async () => {
       try {
-        const fetchedFestival = await getEventById(id);
+        const fetchedFestival = await EventServiceFactory.create().getEventById(id);
         if (fetchedFestival) {
           //setFestival(fetchedFestival);
           setEvent(fetchedFestival);
@@ -67,8 +67,7 @@ const Subscription = () => {
     };
 
     try {
-      console.log(subscriptionData);
-      await createSubscription(subscriptionData);
+      await SubscriptionServiceFactory.getInstance().createSubscription(subscriptionData);
       alert("Inscrição criada com sucesso!");
       navigate('/');
     } catch (error) {

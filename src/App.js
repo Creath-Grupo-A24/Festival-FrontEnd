@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./app/home/home.page";
 import FestivalDetails from "./components/festivalDetails";
 import Subscription from "./components/eventSub";
-import EventCreate from "./components/eventCreate";
+import EventCreate from "./app/event/create/event-create.page";
 import CreateCompany from "./userArea/company/create/createCompany";
 import SubscriptionArea from "./userArea/subscriptionsArea";
 import Details from "./userArea/detailsSubs";

@@ -30,7 +30,7 @@ const FestivalDetails = () => {
     };
 
     fetchFestivalDetails();
-  }, [id]);
+  }, [id, eventService, navigate]);
 
   useEffect(() => {
     const userService = AuthServiceFactory.create();
@@ -45,7 +45,7 @@ const FestivalDetails = () => {
     }
 
     fetchAndSetUser();
-  }, []);
+  }, [navigate]);
 
   const fetchSubscriptions = async () => {
     try {
@@ -102,7 +102,6 @@ const FestivalDetails = () => {
   if (!festival) {
     return <div>Evento não encontrado.</div>;
   }
-  console.log(subscriptions);
 
   function monthName(n) {
     const months = [
