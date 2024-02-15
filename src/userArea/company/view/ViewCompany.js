@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./ViewCompany.css";
 import { useNavigate } from "react-router-dom";
 import { AuthServiceFactory } from "../../../services/auth.service";
-import { Helmet } from "react-helmet";
 import ViewUser from "./ViewUser";
 
 const ViewCompany = ({ user, company }) => {
-    const [expandedUserId, setExpandedUserId] = useState(null);
     const [companyUsers, setCompanyUsers] = useState(null);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
@@ -23,7 +21,7 @@ const ViewCompany = ({ user, company }) => {
             setLoading(false);
         }
         fetchUsers()
-    }, [])
+    }, [user, company, navigate])
 
     return (
         <div>

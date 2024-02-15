@@ -22,10 +22,8 @@ const InviteComponent = () => {
 
     const handleConfirm = async () => {
         try {
-            const confirmationResult = await inviteService.confirm(inviteKey);
-            console.log(confirmationResult); 
+            await inviteService.confirm(inviteKey);
         } catch (error) {
-            console.error('Erro ao confirmar convite:', error);
             alert('Falha ao confirmar o convite.');
         }
     };

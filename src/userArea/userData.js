@@ -27,7 +27,6 @@ const UserData = () => {
     fetchUserData();
   }, []); 
 
-  console.log(company);
   return (
     <div>
        { user && (<form>

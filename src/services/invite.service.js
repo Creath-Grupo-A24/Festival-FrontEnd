@@ -14,8 +14,7 @@ export class InviteService {
             });
             return response.data; 
         } catch (error) {
-            console.error('Erro ao enviar convite:', error);
-            throw error;
+            return { error: 'Erro ao enviar convite' };
         }
     }
 
@@ -24,8 +23,7 @@ export class InviteService {
             const response = await axios.get(`${this.baseApiUrl}/confirm/${key}`);
             return response.data; 
         } catch (error) {
-            console.error('Erro ao confirmar convite:', error);
-            throw error; 
+            return { error: 'Erro ao confirmar convite' };
         }
     }
 }

@@ -17,7 +17,7 @@ export class SubscriptionService {
         });
 
         if (response.status !== 201) {
-            throw new Error('Erro ao criar inscrição');
+            return { error: 'Erro ao criar inscrição' };
         }
 
         return response.headers.get('Location').split('/').pop();
@@ -32,7 +32,7 @@ export class SubscriptionService {
         });
 
         if (response.status !== 200) {
-            throw new Error('Erro ao buscar inscrição');
+            return { error: 'Erro ao buscar inscrição' };
         }
 
         return response.json();
@@ -55,7 +55,7 @@ export class SubscriptionService {
         });
     
         if (response.status !== 200) {
-            throw new Error('Erro ao buscar inscrições');
+            return { error: 'Erro ao buscar inscrições' };
         }
     
         return response.json();
@@ -72,7 +72,7 @@ export class SubscriptionService {
         });
     
         if (response.status !== 200) {
-            throw new Error('Erro ao buscar inscrições');
+            return { error: 'Erro ao buscar inscrições' };
         }
     
         return response.json();

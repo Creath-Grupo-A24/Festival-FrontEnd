@@ -16,12 +16,12 @@ const LoginPage = ({ setExistsUser, setUser, setCompany }) => {
 
   const handleSubmit = async function (e) {
     const error = await loginHandler(e);
-    if (error) navigate("/signin");
+    if (error) alert("Usuário ou senha inválidos");
     else {
-      setExistsUser(true);
       const fetchUser = async () => {
         const user = await AuthServiceFactory.create().getUser();
         setUser(user);
+        setExistsUser(true);
         if (user.company_id != null) {
           const company = await getCompany(user.company_id);
           setCompany(company);

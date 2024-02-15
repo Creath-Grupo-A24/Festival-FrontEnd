@@ -16,8 +16,7 @@ export class CompanyService {
             });
             return response.data;
         } catch (error) {
-            console.error('Erro ao criar companhia', error);
-            throw error.response ? new Error(`Erro HTTP! Status: ${error.response.status}`) : error;
+            return { error: 'Erro ao criar companhia' };
         }
     }
 
@@ -26,8 +25,7 @@ export class CompanyService {
             const response = await axios.get(`${this.baseApiUrl}${id}`);
             return response.data;
         } catch (error) {
-            console.error('Erro ao buscar companhia', error);
-            throw error.response ? new Error(`Erro HTTP! Status: ${error.response.status}`) : error;
+            return { error: 'Erro ao buscar companhia' };
         }
     }
 

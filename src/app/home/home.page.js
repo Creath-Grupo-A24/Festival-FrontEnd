@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getEvents } from "../../components/festivalService";
 import moment from "moment";
 import Slider from "../../components/festivalSlider";
 import ScrollObserver from "../../components/utils/ScrollObserver";
 import "./home.css";
+import { EventServiceFactory } from "../../services/event.service";
 
 const Festivais = () => {
   const [eventos, setEventos] = useState([]);
@@ -13,7 +13,7 @@ const Festivais = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getEvents(0, 10, "", "time", "ASC");
+        const response = await EventServiceFactory.create().getEvents(0, 10, "", "time", "ASC");
         setEventos(response.items || []);
         setLoading(false);
       } catch (error) {

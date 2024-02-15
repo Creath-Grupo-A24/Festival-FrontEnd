@@ -12,14 +12,11 @@ import ScrollObserver from "./utils/ScrollObserver";
 
 const Festivais = () => {
   const [eventos, setEventos] = useState([]);
-  const [roles, setRoles] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getEvents(0, 10, "", "time", "ASC");
-        console.log(response.items);
-        console.log(roles);
         setEventos(response.items || []);
         setEventos(response.items || []);
       } catch (error) {

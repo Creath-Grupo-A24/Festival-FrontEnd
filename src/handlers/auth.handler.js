@@ -26,7 +26,7 @@ export async function registerHandler(e) {
     alert('Número de telefone inválido!');
     return;
   }
-  console.log(registerData)
+  
   const error = await AuthServiceFactory.create().register(registerData);
   if (error) return error;
 }
