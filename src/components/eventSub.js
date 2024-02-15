@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { getEventById } from './festivalService';
 import { createSubscription } from './eventService';
 import './eventSub.css';
+import moment from 'moment';
 
 const Subscription = () => {
   const user = localStorage.getItem('user');
@@ -11,10 +12,11 @@ const Subscription = () => {
   let { id } = useParams();
   const navigate = useNavigate();
 
+  const [event, setEvent] = useState({});
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [time, setTime] = useState('');
-  const [category_id, setCategory] = useState('');
+  const [category, setCategory] = useState('');
   const [event_id, setEvent_Id] = useState('');
   const [selectedStaffId, setSelectedStaffId] = useState('');
   const [staffIds, setStaffIds] = useState([]);
@@ -25,11 +27,14 @@ const Subscription = () => {
         const fetchedFestival = await getEventById(id);
         if (fetchedFestival) {
           //setFestival(fetchedFestival);
+          setEvent(fetchedFestival);
           setName(fetchedFestival.name);
           setDescription(fetchedFestival.description);
           setTime(fetchedFestival.time);
-          setCategory(fetchedFestival.categories.map(categoria => categoria.id).join(', '));
+          setCategory(fetchedFestival.categories);
           setEvent_Id(fetchedFestival.id);
+          console.log(fetchedFestival.categories);
+          console.log(category[0].type);
         }
       } catch (error) {
         console.error('Erro ao buscar detalhes do evento', error);
@@ -49,7 +54,7 @@ const Subscription = () => {
     setSelectedStaffId(e.target.value);
   };
 
-  const parsedCategoryId = parseInt(category_id, 10);
+  const parsedCategoryId = parseInt(category, 10);
 
   const handleSubmit = async () => {
     const subscriptionData = {
@@ -73,17 +78,17 @@ const Subscription = () => {
 
   return (
     <div className="eventSub">
-      <h2>{'Incrição em '+ name}</h2>
+      <h2>{'Incrição em '+ event.name}</h2>
       <label>Nome: </label>
       <input type="text" value={name} onChange={e => setName(e.target.value)} />
       <label>Descrição: </label>
-      <textarea value={description} onChange={e => setDescription(e.target.value)} />
+      <textarea value={""} onChange={e => setDescription(e.target.value)} />
       <label>Horário: </label>
-      <input type="text" value={time} onChange={e => setTime(e.target.value)} />
+      <input type="datetime-local" id="dateTimeInput" value={moment(time).format("YYYY-MM-DDTHH:mm")} onChange={e => setTime(e.target.value)}/>      
       <label>Categorias: </label>
-      <input type="text" value={category_id} onChange={e => setCategory(e.target.value)} />
-      <label>Event ID:</label>
-      <input type="text" value={event_id} readOnly />
+      <select className="select_categories" onChange={e => setCategory(e.target.value)}>
+        <option value={category[0].id}>{category[0].type}</option>
+      </select>
 
       <div>
         <label>Staff:</label>

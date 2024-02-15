@@ -68,7 +68,7 @@
 }
 
 .register-form-group input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(1); /* Inverte as cores do ícone */
+  filter: invert(1); 
 }
 
 .register-form-group input:-webkit-autofill,

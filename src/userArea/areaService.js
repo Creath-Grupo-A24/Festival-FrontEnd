@@ -1,17 +1,16 @@
 import axios from "axios";
-
+import Cookies from 'js-cookie';
 const apiBaseUrl = 'http://localhost:8091/v1/companies/';
 
 export const createCompany = async (companyData) => {
-    const token = localStorage.getItem('token');
-    
     try {
         const response = await axios.post(apiBaseUrl, JSON.stringify(companyData), {
             headers: {
-                'Authorization': `Bearer ${token}`,
+                'Authorization': `Bearer ${Cookies.get('token')}`,
                 'Content-Type': 'application/json', 
             }
         });
+
         return response.data;
     } catch (error) {
         console.error('Erro ao criar companhia', error);

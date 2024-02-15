@@ -18,11 +18,11 @@ const CreateCompany = ({ user, setUser, company, setCompany }) => {
       name: companyname.companyName,
     };
     try {
-      await createCompany(companyData);
+      const companyCreated = await createCompany(companyData);
       console.log("Companhia criada com sucesso", companyData);
       const fetchUser = async () => {
         const user = await AuthServiceFactory.create().getUser();
-        const company = await getCompany(companyname.companyName)
+        const company = await getCompany(companyCreated.id)
         setUser(user);
         setCompany(company)
       };

@@ -2,27 +2,29 @@ import React, { useState, useEffect } from "react";
 import "./ViewCompany.css";
 import { useNavigate } from "react-router-dom";
 import { AuthServiceFactory } from "../../../services/auth.service";
-import { Helmet } from "react-helmet";
 import ViewUser from "./ViewUser";
 
 const ViewCompany = ({ user, company }) => {
-    const [expandedUserId, setExpandedUserId] = useState(null);
-    const [companyUsers, setCompanyUsers] = useState(null);
+    const [companyUsers, setCompanyUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (company == null && user && user.roles && user.roles.includes("MANAGER")) {
-            navigate("/company/create");
+        try {
+            if (company == null && user && user.roles && user.roles.includes("MANAGER")) {
+                navigate("/company/create");
+            }
+            const fetchUsers = async () => {
+                if (!company) return
+                const users = await AuthServiceFactory.create().getUsersByCompany(company.id)
+                //users.filter((user) => !user.roles.includes("MANAGER"));
+                setCompanyUsers(users || [])
+                setLoading(false);
+            }
+            fetchUsers()
+        } catch (error) {
+            console.error("Erro ao buscar usuários da companhia:", error);
         }
-        const fetchUsers = async () => {
-            if (!company) return
-            const users = await AuthServiceFactory.create().getUsersByCompany(company.id)
-            //users.filter((user) => !user.roles.includes("MANAGER"));
-            setCompanyUsers(users || [])
-            setLoading(false);
-        }
-        fetchUsers()
     }, [])
 
     return (

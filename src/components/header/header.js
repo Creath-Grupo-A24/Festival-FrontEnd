@@ -22,25 +22,27 @@ function Header({ existsUser, setExistsUser, setUser, user, setCompany }) {
           <Link className="nav-link" to={existsUser ? "/profile" : "/signin"}>
             Profile
           </Link>
-          {user && !user.roles.includes("ADMIN") ? (
-            <Link className="nav-link" to="/company">
+          {user && user.roles.includes("MANAGER") &&
+            < Link className="nav-link" to="/company">
               Company
-            </Link>
-          ) : 
-          (<Link className="nav-link" to="/event/create">
-            Event
-          </Link>)}
+            </Link>}
+          {user && user.roles.includes("ADMIN") &&
+            (<Link className="nav-link" to="/event/create">
+              Event
+            </Link>)}
         </div>
       </nav>
 
-      {existsUser && (
-        <UserDropdown
-          setExistsUser={setExistsUser}
-          setUser={setUser}
-          setCompany={setCompany}
-        />
-      )}
-    </header>
+      {
+        existsUser && (
+          <UserDropdown
+            setExistsUser={setExistsUser}
+            setUser={setUser}
+            setCompany={setCompany}
+          />
+        )
+      }
+    </header >
   )
 }
 
