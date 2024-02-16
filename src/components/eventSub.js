@@ -61,7 +61,7 @@ const Subscription = () => {
       name: name,
       description: description,
       time: time,
-      category_id:parsedCategoryId,
+      category_id: parsedCategoryId,
       event_id: id,
       staff: staffIds,
     };
@@ -77,16 +77,19 @@ const Subscription = () => {
 
   return (
     <div className="eventSub">
-      <h2>{'Incrição em '+ event.name}</h2>
+      <h2>{'Incrição em ' + event.name}</h2>
       <label>Nome: </label>
-      <input type="text" value={name} onChange={e => setName(e.target.value)} />
+      <input type="text" value={""} onChange={e => setName(e.target.value)} />
       <label>Descrição: </label>
       <textarea value={""} onChange={e => setDescription(e.target.value)} />
       <label>Horário: </label>
-      <input type="datetime-local" id="dateTimeInput" value={moment(time).format("YYYY-MM-DDTHH:mm")} onChange={e => setTime(e.target.value)}/>      
+      <input type="datetime-local" id="dateTimeInput" value={moment(time).format("YYYY-MM-DDTHH:mm")} onChange={e => setTime(e.target.value)} />
       <label>Categorias: </label>
       <select className="select_categories" onChange={e => setCategory(e.target.value)}>
-        <option value={category[0].id}>{category[0].type}</option>
+        <option value="">Selecione uma categoria</option>
+        {event.categories && event.categories.map((cat) => (
+          <option key={cat.id} value={cat.id}>{cat.type}</option>
+        ))}
       </select>
 
       <div>
