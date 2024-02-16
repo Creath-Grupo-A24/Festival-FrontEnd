@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { AuthServiceFactory } from "../services/auth.service";
 import { SubscriptionServiceFactory } from "../services/subscription.service";
 import moment from "moment";
-import UploadForm from "../rules/uploadRules";
+import UploadForm from "./event/rules/upload-rules.component";
 import "./festivalDetails.css";
 import { EventServiceFactory } from "../services/event.service";
 

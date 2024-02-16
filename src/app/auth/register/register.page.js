@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./register.css";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import { getCompany } from "../../../userArea/areaService";
 import { AuthServiceFactory } from "../../../services/auth.service";
 import { registerHandler } from "../../../handlers/auth.handler";
 import { Helmet } from "react-helmet";
+import { CompanyServiceFactory } from "../../../services/company.service";
 
 function RegisterPage({ setExistsUser, setUser, setCompany }) {
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ function RegisterPage({ setExistsUser, setUser, setCompany }) {
         const user = await AuthServiceFactory.create().getUser();
         setUser(user);
         if (user.company_id != null) {
-          const company = await getCompany(user.company_id);
+          const company = await CompanyServiceFactory.create().getCompany(user.company_id);
           setCompany(company);
         }
       };

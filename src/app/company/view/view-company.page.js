@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "./ViewCompany.css";
+import "./view-company.css";
 import { useNavigate } from "react-router-dom";
 import { AuthServiceFactory } from "../../../services/auth.service";
-import ViewUser from "./ViewUser";
+import ViewUser from "../../../components/user/view-user.component";
 
 const ViewCompany = ({ user, company }) => {
     const [companyUsers, setCompanyUsers] = useState(null);
@@ -25,7 +25,7 @@ const ViewCompany = ({ user, company }) => {
         } catch (error) {
             console.error("Erro ao buscar usuários da companhia:", error);
         }
-    }, [])
+    }, [company, navigate, user])
 
     return (
         <div>

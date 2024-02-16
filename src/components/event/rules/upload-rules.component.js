@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { EventServiceFactory } from '../services/event.service';
+import { EventServiceFactory } from '../../../services/event.service';
 
 const UploadForm = ({ id }) => {
   const [selectedFile, setSelectedFile] = useState(null);

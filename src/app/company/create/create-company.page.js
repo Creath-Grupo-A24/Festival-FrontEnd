@@ -1,9 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./createCompany.css";
-import { createCompany, getCompany } from "../../areaService";
+import "./create-company.css";
 import { AuthServiceFactory } from "../../../services/auth.service";
 import { Helmet } from "react-helmet";
+import { CompanyServiceFactory } from "../../../services/company.service";
 
 const CreateCompany = ({ user, setUser, company, setCompany }) => {
   const navigate = useNavigate();
@@ -16,12 +16,13 @@ const CreateCompany = ({ user, setUser, company, setCompany }) => {
       owner_id: user.id,
       name: companyname.companyName,
     };
+    const companyService = CompanyServiceFactory.create();
     try {
-      const companyCreated = await createCompany(companyData);
+      const companyCreated = await companyService.createCompany(companyData);
       console.log("Companhia criada com sucesso", companyData);
       const fetchUser = async () => {
         const user = await AuthServiceFactory.create().getUser();
-        const company = await getCompany(companyCreated.id)
+        const company = await companyService.getCompany(companyCreated.id)
         setUser(user);
         setCompany(company)
       };

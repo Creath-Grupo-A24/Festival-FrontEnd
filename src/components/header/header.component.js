@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import UserDropdown from "./user-dropdown";
+import UserDropdown from "./user-dropdown.component";
 import "./header.css";
 
 function Header({ existsUser, setExistsUser, setUser, user, setCompany }) {

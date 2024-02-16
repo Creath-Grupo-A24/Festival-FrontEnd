@@ -31,7 +31,7 @@ export class CompanyService {
 
 }
 
-export const ECompanyServiceFactory = (function () {
+export const CompanyServiceFactory = (function () {
     let instance;
     return {
         create: function () {

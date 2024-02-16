@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 import { loginHandler } from "../../../handlers/auth.handler";
-import { getCompany } from "../../../userArea/areaService";
 import { AuthServiceFactory } from "../../../services/auth.service";
 import { Helmet } from "react-helmet";
 import Cookies from "js-cookie";
+import { CompanyServiceFactory } from "../../../services/company.service";
 
 const LoginPage = ({ setExistsUser, setUser, setCompany }) => {
   let navigate = useNavigate();
@@ -23,7 +23,7 @@ const LoginPage = ({ setExistsUser, setUser, setCompany }) => {
         setUser(user);
         setExistsUser(true);
         if (user.company_id != null) {
-          const company = await getCompany(user.company_id);
+          const company = await CompanyServiceFactory.create().getCompany(user.company_id);
           setCompany(company);
         }
       };

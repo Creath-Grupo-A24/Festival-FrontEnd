@@ -33,8 +33,6 @@ const Subscription = () => {
           setTime(fetchedFestival.time);
           setCategory(fetchedFestival.categories);
           setEvent_Id(fetchedFestival.id);
-          console.log(fetchedFestival.categories);
-          console.log(category[0].type);
         }
       } catch (error) {
         console.error('Erro ao buscar detalhes do evento', error);

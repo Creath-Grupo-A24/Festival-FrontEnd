@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./ViewUser.css";
+import "./view-user.css";
 import moment from "moment";
 import { FaUserCircle } from "react-icons/fa";
 

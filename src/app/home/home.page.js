@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import Slider from "../../components/festivalSlider";
-import ScrollObserver from "../../components/utils/ScrollObserver";
+import ScrollObserver from "../../utils/scroll-observer";
 import "./home.css";
 import { EventServiceFactory } from "../../services/event.service";
 

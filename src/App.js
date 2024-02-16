@@ -6,20 +6,20 @@ import Home from "./app/home/home.page";
 import FestivalDetails from "./components/festivalDetails";
 import Subscription from "./components/eventSub";
 import EventCreate from "./app/event/create/event-create.page";
-import CreateCompany from "./userArea/company/create/createCompany";
+import CreateCompany from "./app/company/create/create-company.page";
 import SubscriptionArea from "./userArea/subscriptionsArea";
 import Details from "./userArea/detailsSubs";
-import UploadForm from "./rules/uploadRules";
+import UploadForm from "./components/event/rules/upload-rules.component";
 import LoginPage from "./app/auth/login/login.page";
-import Header from "./components/header/header";
+import Header from "./components/header/header.component";
 import Cookies from "js-cookie";
-import Footer from "./components/footer/footer";
+import Footer from "./components/footer/footer.component";
 import RegisterPage from "./app/auth/register/register.page";
 import Profile from "./app/profile/profile.page";
 import { AuthServiceFactory } from "./services/auth.service";
-import { getCompany } from "./userArea/areaService";
 import InviteComponent from "./userArea/inviteComponent";
-import ViewCompany from "./userArea/company/view/ViewCompany";
+import ViewCompany from "./app/company/view/view-company.page";
+import { CompanyServiceFactory } from "./services/company.service";
 
 function App() {
   const [existsUser, setExistsUser] = useState(false);
@@ -33,7 +33,7 @@ function App() {
         const user = await AuthServiceFactory.create().getUser();
         setUser(user);
         if (user.company_id != null) {
-          const company = await getCompany(user.company_id);
+          const company = await CompanyServiceFactory.create().getCompany(user.company_id);
           setCompany(company);
         }
       };
@@ -96,7 +96,7 @@ function App() {
           >
           </Route>
           <Route path="/company/create" element={<CreateCompany user={user} setUser={setUser} company={company} setCompany={setCompany} />} />
-          <Route path="uprules" element={<UploadForm />} />
+          <Route path="/event/rules/upload" element={<UploadForm />} />
         </Routes>
       </main>
 
