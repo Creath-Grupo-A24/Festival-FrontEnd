@@ -37,7 +37,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     filter: invert(1); 
   }
 
-.eventSub select{
+.select_categories{
     width: 100%;
     height: 100%;
     background: transparent;
@@ -58,6 +58,28 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     backdrop-filter: blur(20px);
   }
   
+.select_staff{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    outline: none;
+    border-radius: 40px;
+    font-size: 16px;
+    color: black;
+    padding: 20px 45px 20px 20px;
+
+}
+
+.select_staff option {
+    padding: 5px; 
+    color: #ffffff;
+    background: transparent;
+    background-color: rgba(0, 0, 0, 0.932);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+  }
+
 h2{
     margin-bottom: 4px;
 }

@@ -26,6 +26,10 @@ function Header({ existsUser, setExistsUser, setUser, user, setCompany }) {
             < Link className="nav-link" to="/company">
               Company
             </Link>}
+            {user && user.roles.includes("MANAGER") &&
+            < Link className="nav-link" to="/company">
+              Invite
+            </Link>}
           {user && user.roles.includes("ADMIN") &&
             (<Link className="nav-link" to="/event/create">
               Event

@@ -84,7 +84,7 @@ const Subscription = () => {
       <input type="datetime-local" id="dateTimeInput" value={moment(time).format("YYYY-MM-DDTHH:mm")} onChange={e => setTime(e.target.value)} />
       <label>Categorias: </label>
       <select className="select_categories" onChange={e => setCategory(e.target.value)}>
-        <option value="">Selecione uma categoria</option>
+        <option value="">Decida a categoria</option>
         {event.categories && event.categories.map((cat) => (
           <option key={cat.id} value={cat.id}>{cat.type}</option>
         ))}
@@ -92,8 +92,8 @@ const Subscription = () => {
 
       <div>
         <label>Staff:</label>
-        <select onChange={handleStaffSelectChange}>
-          <option value="">Selecione um usuário</option>
+        <select className="select_staff" onChange={handleStaffSelectChange}>
+          <option value="">Decida os staffs</option>
           <option value={userString.id}>{userString.username}</option>
         </select>
         <button type="button" onClick={handleAddStaff}>{"Adicionar Staff"}</button>
