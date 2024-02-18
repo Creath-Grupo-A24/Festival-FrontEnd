@@ -2,15 +2,8 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.view-company{
+h2 {
     color: #f2f2f2;
-    text-align: left;
-    padding-top: 70px;
-    padding-left: 90px;
-}
-
-.user-catalog {
-    margin: 20px;
 }
 
 .user {
@@ -51,7 +44,7 @@ body {
     transform: scale(0.9);
 }
 
-.unique-user-icon{
+.unique-user-icon {
     font-size: 2em;
     color: black;
 }

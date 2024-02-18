@@ -17,8 +17,18 @@ const ViewCompany = ({ user, company }) => {
             const fetchUsers = async () => {
                 if (!company) return
                 const users = await AuthServiceFactory.create().getUsersByCompany(company.id)
-                //users.filter((user) => !user.roles.includes("MANAGER"));
-                setCompanyUsers(users || [])
+
+                const usersByRole = {};
+                users.forEach((user) => {
+                    user.roles.forEach((role) => {
+                        if (!usersByRole[role]) {
+                            usersByRole[role] = [];
+                        }
+                        usersByRole[role].push(user);
+                    });
+                });
+
+                setCompanyUsers(usersByRole);
                 setLoading(false);
             }
             fetchUsers()
@@ -26,12 +36,9 @@ const ViewCompany = ({ user, company }) => {
             console.error("Erro ao buscar usuários da companhia:", error);
         }
     }, [company, navigate, user])
-
+    
     return (
         <div>
-            <div className="view-company">
-                <h1>{company && company.name}</h1><br />
-            </div>
             <div className="users-container">
                 {loading ? (
                     <div className="loading">
@@ -40,8 +47,18 @@ const ViewCompany = ({ user, company }) => {
                         <div></div>
                     </div>
                 ) : (
-                    companyUsers.map((user, index) => (
-                        <ViewUser key={index} user={user} />
+                    Object.keys(companyUsers).sort((a, b) => {
+                        const roleOrder = ['MANAGER', 'TEACHER', 'DANCER'];
+                        return roleOrder.indexOf(a) - roleOrder.indexOf(b);
+                      }).map((role, index) => (
+                        <div key={index}>
+                            <h2>{role}</h2>
+                            <div>
+                                {companyUsers[role].map((user, userIndex) => (
+                                    <ViewUser key={userIndex} user={user} />
+                                ))}
+                            </div>
+                        </div>
                     ))
                 )}
             </div>
