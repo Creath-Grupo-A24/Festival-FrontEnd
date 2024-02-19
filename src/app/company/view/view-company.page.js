@@ -47,10 +47,12 @@ const ViewCompany = ({ user, company }) => {
   return (
     <div className="users-container">
       {loading ? (
-        <div className="loading">
-          <div></div>
-          <div></div>
-          <div></div>
+        <div className="full-screen">
+          <div className="loading">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
         </div>
       ) : (
         <>

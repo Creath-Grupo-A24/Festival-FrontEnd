@@ -22,6 +22,11 @@ h2 {
   flex-direction: column;
 }
 
+.fullscreen{
+  width: 100%;
+  height: 100%;
+}
+
 .role-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
