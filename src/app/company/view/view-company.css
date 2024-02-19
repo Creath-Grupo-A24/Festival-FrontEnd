@@ -1,50 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap");
+
 body {
-    font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 h2 {
-    color: #f2f2f2;
-}
-
-.user {
-    cursor: pointer;
-    background-color: #f2f2f2;
-    padding: 10px;
-    margin-bottom: 5px;
-    border-radius: 10px;
+  color: #f2f2f2;
 }
 
 .details {
-    display: none;
-    padding-left: 20px;
+  display: none;
+  padding-left: 20px;
 }
 
 .arrow {
-    float: right;
+  float: right;
 }
 
 .users-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 25px;
-    margin: 100px auto 100px auto;
-    max-width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.role-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+  margin: 100px auto 100px auto;
+  max-width: 90%;
 }
 
 .user-item {
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    position: relative;
-    transition: 0.5s;
-    height: 250px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  transition: 0.5s;
+  height: 250px;
 }
 
 .user-item:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
-    transform: scale(0.9);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+  transform: scale(0.9);
 }
 
-.unique-user-icon {
-    font-size: 2em;
-    color: black;
+.role-type {
+  position: absolute;
+  left: 100px;
+  margin-top: -50px;
+}
+
+.users-by-roles {
+  margin-top: 50px;
+}
+
+.company-name {
+    text-transform: capitalize;
+  color: #fff;
+  font-size: 50px;
+  font-family: "Protest Strike", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }

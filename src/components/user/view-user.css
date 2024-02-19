@@ -1,5 +1,25 @@
-.arrow{
-    position: absolute;
-    margin-left: 100px;
-    margin-top: -18px;
+.arrow {
+  position: absolute;
+  margin-left: 100px;
+  margin-top: -18px;
+}
+
+.user {
+  color: #fff;
+  background: rgba(0, 0, 0, .5);
+  cursor: pointer;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: "Arial", sans-serif;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+}
+
+.unique-user-icon {
+  font-size: 2em;
+  position: absolute;
+  left: 20px;
 }
