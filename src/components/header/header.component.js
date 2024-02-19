@@ -27,7 +27,7 @@ function Header({ existsUser, setExistsUser, setUser, user, setCompany }) {
               Company
             </Link>}
             {user && user.roles.includes("MANAGER") &&
-            < Link className="nav-link" to="/company">
+            < Link className="nav-link" to="/company/invite">
               Invite
             </Link>}
           {user && user.roles.includes("ADMIN") &&

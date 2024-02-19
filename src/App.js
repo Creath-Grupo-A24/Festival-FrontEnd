@@ -33,7 +33,9 @@ function App() {
         const user = await AuthServiceFactory.create().getUser();
         setUser(user);
         if (user.company_id != null) {
-          const company = await CompanyServiceFactory.create().getCompany(user.company_id);
+          const company = await CompanyServiceFactory.create().getCompany(
+            user.company_id
+          );
           setCompany(company);
         }
       };
@@ -88,14 +90,23 @@ function App() {
           >
             <Route path="subscriptionlist" element={<SubscriptionArea />} />
             <Route path="details" element={<Details />} />
-            <Route path="invite" element={<InviteComponent />} />
           </Route>
           <Route
             path="/company"
             element={<ViewCompany user={user} company={company} />}
-          >
-          </Route>
-          <Route path="/company/create" element={<CreateCompany user={user} setUser={setUser} company={company} setCompany={setCompany} />} />
+          ></Route>
+          <Route path="/company/invite" element={<InviteComponent />} />
+          <Route
+            path="/company/create"
+            element={
+              <CreateCompany
+                user={user}
+                setUser={setUser}
+                company={company}
+                setCompany={setCompany}
+              />
+            }
+          />
           <Route path="/event/rules/upload" element={<UploadForm />} />
         </Routes>
       </main>

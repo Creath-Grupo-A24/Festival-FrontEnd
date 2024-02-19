@@ -13,10 +13,11 @@ const Profile = ({ user, company }) => {
             <div className="roles">
               <ul className="roleList">
                 {user.roles.map((role, index) => (
-                  <li className="role" key={index}>
+                  <li className="list-item" key={index}>
                     {role}
                   </li>
                 ))}
+                <li className="list-item">ID: {user.id}</li>
               </ul>
             </div>
           </div>
@@ -29,8 +30,7 @@ const Profile = ({ user, company }) => {
               Data de Nascimento: {moment(user.birth_date).format("DD/MM/yyyy")}
             </p>
             <p className="info">
-              Companhia:{" "}
-              {company ? company.name : "Não associado a companhia"}
+              Companhia: {company ? company.name : "Não associado a companhia"}
             </p>
           </div>
         </div>

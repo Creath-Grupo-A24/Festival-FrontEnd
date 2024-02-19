@@ -17,7 +17,10 @@ body {
 @media (max-width: 768px) {
   .container {
     width: 90%;
-    height: 45vh;
+    height: 80vh;
+  }
+  .top{
+    text-align: left;
   }
 }
 
@@ -74,7 +77,7 @@ body {
   height: 100%;
 }
 
-.role {
+.list-item {
   list-style: none;
   color: #fff;
   flex: 1;
