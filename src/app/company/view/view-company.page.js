@@ -67,8 +67,8 @@ const ViewCompany = ({ user, company }) => {
                 <div key={index}>
                   <h2 className="role-type">{role}</h2>
                   <div className="role-container">
-                    {companyUsers[role].map((user, userIndex) => (
-                      <ViewUser className="user" key={userIndex} user={user} />
+                    {companyUsers[role].map((u, userIndex) => (
+                      <ViewUser className="user" key={userIndex} user={u} userRole={user.roles}/>
                     ))}
                   </div>
                 </div>

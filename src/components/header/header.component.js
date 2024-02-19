@@ -22,7 +22,7 @@ function Header({ existsUser, setExistsUser, setUser, user, setCompany }) {
           <Link className="nav-link" to={existsUser ? "/profile" : "/signin"}>
             Profile
           </Link>
-          {user && user.roles.includes("MANAGER") &&
+          {user && (user.roles.includes("MANAGER") || user.roles.includes("TEACHER") || user.roles.includes("DANCER")) &&
             < Link className="nav-link" to="/company">
               Company
             </Link>}
