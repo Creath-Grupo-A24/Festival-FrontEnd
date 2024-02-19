@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { InviteServiceFactory } from "../services/invite.service";
 import "./inviteComponent.css";
 
-const InviteComponent = () => {
+const InviteComponent = ({ company }) => {
+  const navigate = useNavigate()
+  useEffect(() => {
+    if(!company) navigate("/");
+
+  })
+
   const [inviteKey, setInviteKey] = useState("");
   const [inviteData, setInviteData] = useState({
-    uuid: "",
+    company_id: company.id,
+    guest_id: ''
   });
 
   const inviteService = InviteServiceFactory.create();
@@ -20,14 +28,6 @@ const InviteComponent = () => {
     }
   };
 
-  const handleConfirm = async () => {
-    try {
-      await inviteService.confirm(inviteKey);
-    } catch (error) {
-      alert("Falha ao confirmar o convite.");
-    }
-  };
-
   return (
     <div className="invite">
       <h1>Envie o convite!</h1>
@@ -37,24 +37,13 @@ const InviteComponent = () => {
           type="email"
           value={inviteData.uuid}
           onChange={(e) =>
-            setInviteData({ ...inviteData, uuid: e.target.value })
+            setInviteData({ ...inviteData, guest_id: e.target.value })
           }
         />
       </div>
       <button className="btn" onClick={handleInvite}>
         Enviar Convite
       </button>
-      <br />
-      <h1>Insira o código enviado!</h1>
-      <div className="invite-group">
-        <input
-          placeholder="Digite o código que o usuário recebeu"
-          type="text"
-          value={inviteKey}
-          onChange={(e) => setInviteKey(e.target.value)}
-        />
-      </div>
-      <button onClick={handleConfirm}>Confirmar Convite</button>
     </div>
   );
 };

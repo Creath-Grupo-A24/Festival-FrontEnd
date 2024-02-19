@@ -95,7 +95,7 @@ function App() {
             path="/company"
             element={<ViewCompany user={user} company={company} />}
           ></Route>
-          <Route path="/company/invite" element={<InviteComponent />} />
+          <Route path="/company/invite" element={<InviteComponent company={company} />} />
           <Route
             path="/company/create"
             element={
