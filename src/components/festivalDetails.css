@@ -126,3 +126,44 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.subscription-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+  margin: 100px auto 100px auto;
+  max-width: 90%;
+}
+
+.subscription {
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  transition: 0.5s;
+  height: 250px;
+}
+
+.subscription {
+  position: relative;
+  padding: 10px;
+  color: #fff;
+  text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.82);
+  z-index: 2;
+}
+
+.subscription h3 {
+  text-transform: uppercase;
+  font-size: 1.3em;
+  font-weight: bold;
+  margin: 0.5em 0;
+}
+
+.subscription p {
+  margin: 0 0 0.5em;
+  font-size: 1em;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

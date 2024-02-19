@@ -35,7 +35,6 @@ const InviteComponent = ({ company }) => {
         <input
           placeholder="Digite o id de um usuário válido"
           type="email"
-          value={inviteData.uuid}
           onChange={(e) =>
             setInviteData({ ...inviteData, guest_id: e.target.value })
           }

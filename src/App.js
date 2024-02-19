@@ -81,9 +81,8 @@ function App() {
             }
           />
           <Route path="/festival/:id" element={<FestivalDetails />} />
-          <Route path="/inscricao/:id" element={<Subscription />} />
+          <Route path="/inscricao/:id" element={<Subscription company={company}/>} />
           <Route path="/event/create" element={<EventCreate />} />
-          <Route path="/inscricao/:id" element={<Subscription />} />
           <Route
             path="/profile"
             element={<Profile user={user} company={company} />}

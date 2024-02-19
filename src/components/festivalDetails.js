@@ -151,9 +151,9 @@ const FestivalDetails = () => {
           <button onClick={handleShowUploadForm}>Subir regras</button>
         )}
         {showUploadForm && <UploadForm id={id} />}
-        {user && user.roles &&
-          (user.roles.includes("ADMIN") ||
-            user.roles.includes("MANAGER")) && (
+        {user &&
+          user.roles &&
+          (user.roles.includes("ADMIN") || user.roles.includes("MANAGER")) && (
             <button onClick={handleDownload}>Download regras</button>
           )}
       </div>
@@ -161,19 +161,11 @@ const FestivalDetails = () => {
       {subscriptions.length > 0 && (
         <div className="subscription-details">
           {subscriptions.map((subscription) => (
-            <div key={subscription.id}>
-              <form>
-                <h3>{subscription.name}</h3>
-                <p>{"Descrição: " + subscription.description}</p>
-                <p>{"ID da inscrição" + subscription.id}</p>
-                <p>{"Categories:" + subscription.category_id}</p>
-                <p>{"Horario: " + subscription.time}</p>
-                <p>
-                  {"Staff: " + Array.isArray(subscription.staff)
-                    ? subscription.staff.join(", ")
-                    : ""}
-                </p>
-              </form>
+            <div className="subscription" key={subscription.id}>
+              <h3>{subscription.name}</h3>
+              <p>{"Descrição: " + subscription.description}</p>
+              <p>{"Categoria:" + subscription.category_id}</p>
+              <p>{"Horário: " + moment(subscription.time).format("HH:mm")}</p>
             </div>
           ))}
         </div>
