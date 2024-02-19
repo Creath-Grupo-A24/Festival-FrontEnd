@@ -77,9 +77,9 @@ const Subscription = () => {
     <div className="eventSub">
       <h2>{'Incrição em ' + event.name}</h2>
       <label>Nome: </label>
-      <input type="text" value={""} onChange={e => setName(e.target.value)} />
+      <input type="text" onChange={e => setName(e.target.value)} />
       <label>Descrição: </label>
-      <textarea value={""} onChange={e => setDescription(e.target.value)} />
+      <textarea onChange={e => setDescription(e.target.value)} />
       <label>Horário: </label>
       <input type="datetime-local" id="dateTimeInput" value={moment(time).format("YYYY-MM-DDTHH:mm")} onChange={e => setTime(e.target.value)} />
       <label>Categorias: </label>
