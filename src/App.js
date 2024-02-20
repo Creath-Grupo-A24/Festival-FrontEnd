@@ -55,6 +55,7 @@ function App() {
         setUser={setUser}
         user={user}
         setCompany={setCompany}
+        company={company}
       />
 
       <main className="app-content-container">

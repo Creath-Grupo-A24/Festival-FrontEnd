@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import UserDropdown from "./user-dropdown.component";
 import "./header.css";
 
-function Header({ existsUser, setExistsUser, setUser, user, setCompany }) {
+function Header({ existsUser, setExistsUser, setUser, user, setCompany, company }) {
   return (
     <header className="app-header-container">
       <div className="app-header-logo">
@@ -22,7 +22,7 @@ function Header({ existsUser, setExistsUser, setUser, user, setCompany }) {
           <Link className="nav-link" to={existsUser ? "/profile" : "/signin"}>
             Profile
           </Link>
-          {user && (user.roles.includes("MANAGER") || user.roles.includes("TEACHER") || user.roles.includes("DANCER")) &&
+          {user && (user.roles.includes("MANAGER") || (user.roles.includes("TEACHER") || user.roles.includes("DANCER") && company)) &&
             < Link className="nav-link" to="/company">
               Company
             </Link>}
